@@ -51,11 +51,21 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #ffffff;
+  color: white;
 }
 
 h1 {
   font-size: 4rem;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+p {
+  margin-bottom: 2rem;
 }
 ul {
   list-style: none;

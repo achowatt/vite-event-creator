@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "@/views/Home.vue";
 import sourceData from "@/data.json";
+import musicianData from "@/musicians.json";
 
 const routes = [
   {
@@ -46,6 +47,24 @@ const routes = [
       //navigation gaurd to check if page exists
       const exists = sourceData.concerts.find(
         (concert) => concert.id === parseInt(to.params.id)
+      );
+      if (!exists)
+        return {
+          name: "NotFound",
+          params: { pathMatch: to.path.split("/").slice(1) },
+          query: to.query,
+          hash: to.hash,
+        };
+    },
+  },
+  {
+    path: "/musicians/:id",
+    name: "musician.details",
+    component: () => import("@/views/MusicDetails.vue"),
+    beforeEnter(to, from) {
+      //navigation gaurd to check if page exists
+      const exists = musicianData.musicians.find(
+        (musician) => musician.id === parseInt(to.params.id)
       );
       if (!exists)
         return {

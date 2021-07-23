@@ -27,7 +27,7 @@ export default {};
   align-items: center;
   color: white;
   font-size: 1.3rem;
-  background: rgba(0, 0, 0, 0.596);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0), black 65%);
   z-index: 3;
 
   .nav-width {

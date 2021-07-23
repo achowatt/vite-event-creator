@@ -2,9 +2,9 @@
   <div id="home" class="home-container">
     <div class="content-wrapper">
       <div>
-        <h1>Find live concerts.</h1>
-        <h1>Meet musicians.</h1>
-        <h1>Share music.</h1>
+        <h1 class="find-live-concerts">Find live concerts.</h1>
+        <h1 class="meet-musicians">Meet musicians.</h1>
+        <h1 class="share-your-passion">Share your passion.</h1>
       </div>
       <div class="button-container">
         <router-link to="/create-event" class="create-event-btn btn"
@@ -32,13 +32,23 @@ export default {};
   filter: contrast(1.5);
 
   .content-wrapper {
-    background: rgba(0, 0, 0, 0.363);
-    min-width: 50%;
-    min-height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
+    h1 {
+      padding: 0.5rem;
+      &.find-live-concerts {
+        background: rgba(161, 158, 156, 0.151);
+      }
+      &.meet-musicians {
+        background: rgba(33, 67, 117, 0.5);
+      }
+      &.share-your-passion {
+        background: rgba(192, 21, 21, 0.493);
+      }
+    }
   }
 
   .button-container {
