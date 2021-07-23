@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="concerts" class="concerts-container">
     <h1>Yay Concerts</h1>
     <router-link
       v-for="{ id, bandName, slug } in concerts"
@@ -22,4 +22,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.concerts-container {
+  background-image: url("https://res.cloudinary.com/djv69vvs7/image/upload/c_scale,w_1367/v1627013128/interiordesign/concert-creator-app/dark-rider-JmVaNyemtN8-unsplash_vzrmag.jpg");
+  background-size: cover;
+}
+</style>

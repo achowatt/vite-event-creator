@@ -24,7 +24,6 @@ export default {};
 
 <style lang="scss" scoped>
 .home-container {
-  min-height: calc(100vh - 8rem); //screen height - nav bar
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,30 +32,35 @@ export default {};
   filter: contrast(1.5);
 
   .content-wrapper {
-    background: rgba(65, 61, 61, 0.384);
+    background: rgba(0, 0, 0, 0.363);
     min-width: 50%;
     min-height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
   }
 
-  .btn {
-    padding: 0.5rem;
-    background: transparent;
-    border: none;
-  }
+  .button-container {
+    margin: 2rem 0;
+    .btn {
+      padding: 0.5rem;
+      background: transparent;
+      border: none;
+    }
 
-  .create-event-btn {
-    background: white;
-    border-radius: 5px;
-    color: black;
-  }
+    .create-event-btn {
+      background: white;
+      border-radius: 5px;
+      color: black;
+      margin-right: 2rem;
+    }
 
-  .new-profile-btn {
-    color: white;
-    border: 1px solid white;
-    border-radius: 5px;
+    .new-profile-btn {
+      color: white;
+      border: 1px solid white;
+      border-radius: 5px;
+    }
   }
 }
 </style>

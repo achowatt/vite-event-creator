@@ -1,11 +1,17 @@
 <template>
-  <TheNavigation />
-  <router-view v-slot="{ Component }">
-    <transition name="moveUp">
-      <component :is="Component" :key="$route.path"></component>
-    </transition>
-  </router-view>
-  <footer />
+  <div>
+    <TheNavigation />
+    <router-view v-slot="{ Component }">
+      <transition name="moveUp" mode="in-out">
+        <component
+          :is="Component"
+          :key="$route.path"
+          class="main-wrapper"
+        ></component>
+      </transition>
+    </router-view>
+    <footer />
+  </div>
 </template>
 
 <script>
@@ -34,6 +40,11 @@ html {
 
 body {
   background: black;
+}
+
+.main-wrapper {
+  min-height: calc(100vh); //screen height - nav bar
+  padding-top: 8rem;
 }
 
 #app {

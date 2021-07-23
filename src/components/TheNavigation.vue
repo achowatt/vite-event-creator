@@ -19,12 +19,16 @@ export default {};
 
 <style lang="scss" scoped>
 .nav-container {
+  position: fixed;
+  width: 100%;
   display: flex;
   height: 8rem;
   justify-content: center;
   align-items: center;
   color: white;
   font-size: 1.3rem;
+  background: rgba(0, 0, 0, 0.596);
+  z-index: 3;
 
   .nav-width {
     display: flex;
