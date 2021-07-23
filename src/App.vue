@@ -1,7 +1,7 @@
 <template>
   <TheNavigation />
   <router-view v-slot="{ Component }">
-    <transition name="moveUp" mode="out-in">
+    <transition name="moveUp">
       <component :is="Component" :key="$route.path"></component>
     </transition>
   </router-view>
@@ -63,14 +63,18 @@ a {
 }
 
 //Transition
-.moveUp-enter-from,
+.moveUp-enter-from {
+  opacity: 0;
+  transform: translateY(100vh);
+}
+
 .moveUp-leave-to {
   opacity: 0;
-  transform: translateY(200px);
+  transform: translateY(-100vh);
 }
 
 .moveUp-enter-active,
 .moveUp-leave-active {
-  transition: opacity 0.5s, transform 0.6s;
+  transition: opacity 1s, transform 0.7s;
 }
 </style>
