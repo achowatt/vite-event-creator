@@ -1,12 +1,14 @@
 <template>
-  <div>yay concert</div>
-  <router-link
-    v-for="{ id, bandName, slug } in concerts"
-    :key="id"
-    :to="{ name: 'concert.details', params: { id, slug } }"
-  >
-    <h2>{{ bandName }}</h2>
-  </router-link>
+  <div>
+    <h1>Yay Concerts</h1>
+    <router-link
+      v-for="{ id, bandName, slug } in concerts"
+      :key="id"
+      :to="{ name: 'concert.details', params: { id, slug } }"
+    >
+      <h2>{{ bandName }}</h2>
+    </router-link>
+  </div>
 </template>
 
 <script>

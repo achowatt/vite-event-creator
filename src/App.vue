@@ -1,6 +1,10 @@
 <template>
   <TheNavigation />
-  <router-view :key="$route.path"></router-view>
+  <router-view v-slot="{ Component }">
+    <!-- <transition name="moveUp"> -->
+    <component :is="Component" :key="$route.path"></component>
+    <!-- </transition> -->
+  </router-view>
   <footer />
 </template>
 
@@ -56,5 +60,17 @@ a {
 //Styling link for active page
 .router-link-active {
   color: rgb(255, 187, 0);
+}
+
+//Transition
+.moveUp-enter-from,
+.moveUp-leave-to {
+  opacity: 0;
+  transform: translateY(200px);
+}
+
+.moveUp-enter-active,
+.moveUp-leave-active {
+  transition: opacity 1s, transform 1s;
 }
 </style>

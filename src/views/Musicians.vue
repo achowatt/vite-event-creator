@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div>Hello Musicians</div>
 </template>
 
 <script>
