@@ -28,7 +28,7 @@ export default {};
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("/src/assets/yannis-papanastasopoulos-yWF2LLan-_o-unsplash.jpg");
+  background-image: url("https://res.cloudinary.com/djv69vvs7/image/upload/c_scale,w_1443/v1627011288/interiordesign/concert-creator-app/yannis-papanastasopoulos-yWF2LLan-_o-unsplash_c9mur3.jpg");
   background-size: cover;
   filter: contrast(1.5);
 
