@@ -2,35 +2,44 @@
   <div id="concert-details" class="concert-details-container">
     <div class="content-container">
       <GoBack />
-      <h1>{{ concert.bandName }}</h1>
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt odio
-        reprehenderit aliquid fuga excepturi. Incidunt explicabo molestias eum
-        non illum reprehenderit. Obcaecati earum atque ducimus, consectetur
-        soluta recusandae repellendus reiciendis!
-      </p>
-      <h2>Meet the members</h2>
+      <div class="band-image" :style="{ backgroundImage: imageBG }">
+        <h1>{{ concert.bandName }}</h1>
+      </div>
+      <div class="about">
+        <p>About</p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt odio
+          reprehenderit aliquid fuga excepturi. Incidunt explicabo molestias eum
+          non illum reprehenderit. Obcaecati earum atque ducimus, consectetur
+          soluta recusandae repellendus reiciendis!
+        </p>
+      </div>
+      <h2>Meet the musicians</h2>
       <!-- Concert Details {{ $route.params.id }} -->
       <div
-        v-for="member in concert.musicians"
-        :key="member.id"
-        :id="member.id"
-        class="member-section"
+        v-for="musician in concert.musicians"
+        :key="musician.id"
+        :id="musician.id"
+        class="musician-section"
       >
         <div>
-          <img :src="member.image" :alt="member.name" class="member-image" />
+          <img
+            :src="musician.image"
+            :alt="musician.name"
+            class="musician-image"
+          />
         </div>
-        <div class="member-info">
-          <h3 class="name">{{ member.fullName }}</h3>
+        <div class="musician-info">
+          <h3 class="name">{{ musician.fullName }}</h3>
           <p class="bio">
-            {{ member.bio }} Lorem ipsum dolor sit, amet consectetur adipisicing
+            {{ musician.bio }} Lorem ipsum dolor sit, amet consectetur
+            adipisicing elit. Sunt odio reprehenderit aliquid fuga excepturi.
+            Incidunt explicabo molestias eum non illum reprehenderit. Obcaecati
+            earum atque ducimus, consectetur soluta recusandae repellendus
+            reiciendis! Lorem ipsum dolor sit, amet consectetur adipisicing
             elit. Sunt odio reprehenderit aliquid fuga excepturi. Incidunt
             explicabo molestias eum non illum reprehenderit. Obcaecati earum
             atque ducimus, consectetur soluta recusandae repellendus reiciendis!
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt odio
-            reprehenderit aliquid fuga excepturi. Incidunt explicabo molestias
-            eum non illum reprehenderit. Obcaecati earum atque ducimus,
-            consectetur soluta recusandae repellendus reiciendis!
           </p>
         </div>
       </div>
@@ -52,6 +61,9 @@ export default {
         (concert) => concert.id === this.concertId
       );
     },
+    imageBG() {
+      return `url(${this.concert.image})`;
+    },
   },
 };
 </script>
@@ -59,18 +71,80 @@ export default {
 <style lang="scss" scoped>
 .concert-details-container {
   background: black;
+  /* background-image: url("https://res.cloudinary.com/djv69vvs7/image/upload/c_scale,w_993/v1627092319/interiordesign/concert-creator-app/jacob-kiesow-XakAFeeQZI0-unsplash_iozekf.jpg"); */
+  background-size: cover;
+  background-position: right;
+  filter: contrast(1.1);
+  background-attachment: fixed;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.37);
+    background-attachment: fixed;
+    z-index: -1;
+  }
 
   .content-container {
     max-width: 1200px;
     padding: 2rem;
     margin: 0 auto;
     position: relative;
+    background: rgba(0, 0, 0, 0.336);
   }
 
-  .member-section {
+  h1 {
+    text-shadow: 2px 2px 10px #000000a8;
+    /* border-bottom: 1px solid white; */
+    /* background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(rgb(255, 208, 0), rgb(255, 174, 0)); */
+  }
+
+  .band-image {
+    width: 100%;
+    height: 20rem;
+    background-size: cover;
+    background-position-y: 50%;
+    margin-bottom: 5rem;
+    display: flex;
+    align-items: flex-end;
+    padding-left: 2rem;
+  }
+
+  h2 {
+    margin-top: 3rem;
+    /* background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(rgb(255, 208, 0), rgb(255, 174, 0)); */
+  }
+
+  .about {
+    display: flex;
+    @media screen and (max-width: 700px) {
+      flex-direction: column;
+    }
+    p:first-child {
+      flex: 1;
+      color: rgb(255, 145, 0);
+    }
+    p:last-child {
+      flex: 10;
+    }
+  }
+
+  .musician-section {
     display: flex;
     margin-bottom: 5rem;
     align-items: center;
+    /* background: rgba(0, 0, 0, 0.493); */
 
     &:nth-of-type(odd) {
       div:nth-of-type(odd) {
@@ -79,6 +153,7 @@ export default {
       }
       div:nth-of-type(even) {
         order: 1;
+        /* padding-left: 2rem; */
       }
     }
 
@@ -88,17 +163,20 @@ export default {
       }
     }
 
-    .member-image {
+    .musician-image {
       width: auto;
       max-height: 400px;
+      border-radius: 5px;
     }
   }
 
   @media screen and (max-width: 980px) {
-    .member-section {
+    .musician-section {
       display: flex;
       flex-direction: column;
-      align-items: unset;
+      align-items: center;
+      padding: 2rem 0;
+
       &:nth-of-type(odd) {
         div:nth-of-type(odd) {
           order: unset;
@@ -115,7 +193,7 @@ export default {
         }
       }
 
-      .member-image {
+      .musician-image {
         max-width: 100%;
         max-height: none;
         margin-bottom: 2rem;

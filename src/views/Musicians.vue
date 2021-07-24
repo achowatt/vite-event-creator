@@ -10,6 +10,9 @@
         >
           <ReusableCard :info="musician">
             <h2>{{ musician.fullName }}</h2>
+            <p v-for="instrument in musician.instruments" :key="instrument">
+              {{ instrument }}
+            </p>
           </ReusableCard>
         </router-link>
       </div>
@@ -57,6 +60,10 @@ export default {
     );
     background-attachment: fixed;
     z-index: -1;
+  }
+
+  h2 {
+    font-size: 2rem;
   }
 
   .content-container {

@@ -37,14 +37,15 @@ export default {
 
 <style lang="scss" scoped>
 .concerts-container {
+  background: black;
   background-image: url("https://res.cloudinary.com/djv69vvs7/image/upload/c_scale,w_1367/v1627013128/interiordesign/concert-creator-app/dark-rider-JmVaNyemtN8-unsplash_vzrmag.jpg");
   background-size: contain;
-  background: black;
   background-repeat: no-repeat;
-  background-position: right top;
+  background-position: right;
   filter: contrast(1.1);
   background-attachment: fixed;
   position: relative;
+
   &::after {
     content: "";
     position: fixed;
@@ -52,14 +53,21 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, black);
+    background: linear-gradient(
+      to bottom,
+      rgb(0, 0, 0),
+      rgba(255, 255, 255, 0) 15% 90%,
+      rgb(0, 0, 0)
+    );
     background-attachment: fixed;
     z-index: -1;
   }
+
   .content-container {
     max-width: 1200px;
     padding: 2rem;
     margin: 0 auto;
+    text-shadow: 2px 2px 10px #000000a8;
   }
   .concert-list {
     display: grid;

@@ -92,6 +92,7 @@ h2 {
 p {
   margin-bottom: 2rem;
 }
+
 ul {
   list-style: none;
   padding: 0;
@@ -146,6 +147,6 @@ a {
 
 .slide-enter-active,
 .slide-leave-active {
-  transition: opacity 1s, transform 0.7s;
+  transition: opacity 1.2s, transform 0.5s;
 }
 </style>
