@@ -13,8 +13,9 @@
         >
           <ReusableCard :info="concertInfo">
             <h2>{{ concertInfo.bandName }}</h2>
-            <p>Hello Annanu</p>
             <p>{{ concertInfo.date }}</p>
+            <p>{{ concertInfo.location }}</p>
+            <p>{{ concertInfo.time }}</p>
           </ReusableCard>
         </router-link>
       </div>
@@ -74,6 +75,10 @@ export default {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-gap: 1rem;
     grid-row-gap: 1.5rem;
+
+    p {
+      margin-bottom: 0rem;
+    }
   }
 }
 </style>

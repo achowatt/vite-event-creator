@@ -104,6 +104,10 @@ a {
   color: white;
 }
 
+button {
+  border: none;
+}
+
 //Styling link for active page
 .router-link-active {
   color: rgb(255, 187, 0);

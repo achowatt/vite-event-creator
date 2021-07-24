@@ -29,5 +29,7 @@ export default {
   padding: 1rem;
   border-radius: 5px;
   border: rgba(255, 255, 255, 0.151) solid 1px;
+  display: grid;
+  place-items: center;
 }
 </style>

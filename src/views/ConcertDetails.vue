@@ -4,6 +4,7 @@
       <GoBack />
       <div class="band-image" :style="{ backgroundImage: imageBG }">
         <h1>{{ concert.bandName }}</h1>
+        <p>{{ concert.date }}</p>
       </div>
       <div class="about">
         <p>About</p>
@@ -100,11 +101,6 @@ export default {
 
   h1 {
     text-shadow: 2px 2px 10px #000000a8;
-    /* border-bottom: 1px solid white; */
-    /* background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    background-image: linear-gradient(rgb(255, 208, 0), rgb(255, 174, 0)); */
   }
 
   .band-image {
@@ -114,8 +110,12 @@ export default {
     background-position-y: 50%;
     margin-bottom: 5rem;
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
+    justify-content: flex-end;
     padding-left: 2rem;
+    h1 {
+      margin-bottom: 0rem;
+    }
   }
 
   h2 {

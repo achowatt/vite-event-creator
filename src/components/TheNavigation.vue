@@ -28,6 +28,7 @@ export default {};
   color: white;
   font-size: 1.3rem;
   z-index: 3;
+  background: rgba(0, 0, 0, 0.781);
 
   .nav-width {
     display: flex;
