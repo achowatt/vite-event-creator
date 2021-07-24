@@ -39,7 +39,6 @@ export default {
   background-position: right;
   filter: contrast(1.1);
   background-attachment: fixed;
-  z-index: -2;
   position: relative;
   &::after {
     content: "";
