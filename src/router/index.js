@@ -60,7 +60,7 @@ const routes = [
   {
     path: "/musicians/:id",
     name: "musician.details",
-    component: () => import("@/views/MusicDetails.vue"),
+    component: () => import("@/views/MusicianDetails.vue"),
     beforeEnter(to, from) {
       //navigation gaurd to check if page exists
       const exists = musicianData.musicians.find(
