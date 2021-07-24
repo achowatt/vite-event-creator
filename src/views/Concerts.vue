@@ -25,7 +25,6 @@
 <script>
 import sourceData from "@/data.json";
 import ReusableCard from "@/components/ReusableCard.vue";
-
 export default {
   components: { ReusableCard },
   data() {
@@ -38,14 +37,8 @@ export default {
 
 <style lang="scss" scoped>
 .concerts-container {
-  background-image: url("https://res.cloudinary.com/djv69vvs7/image/upload/c_scale,w_570/v1627076344/interiordesign/concert-creator-app/dark-rider-JmVaNyemtN8-unsplash_pb02la.jpg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: right top;
-  filter: contrast(1.1);
-  background-attachment: fixed;
-  z-index: -2;
-  position: relative;
+  background-image: url("https://res.cloudinary.com/djv69vvs7/image/upload/c_scale,w_1367/v1627013128/interiordesign/concert-creator-app/dark-rider-JmVaNyemtN8-unsplash_vzrmag.jpg");
+  background-size: cover;
   &::after {
     content: "";
     position: fixed;
@@ -57,13 +50,11 @@ export default {
     background-attachment: fixed;
     z-index: -1;
   }
-
   .content-container {
     max-width: 1200px;
     padding: 2rem;
     margin: 0 auto;
   }
-
   .concert-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
