@@ -30,9 +30,9 @@ const routes = [
     component: () => import("@/views/Concerts.vue"),
   },
   {
-    path: "/create-event",
-    name: "CreateEvent",
-    component: () => import("@/views/CreateEvent.vue"),
+    path: "/add-new-event",
+    name: "AddNewEvent",
+    component: () => import("@/views/AddNewEvent.vue"),
   },
   {
     path: "/page-not-found-404",

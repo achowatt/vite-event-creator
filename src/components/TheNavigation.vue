@@ -6,7 +6,7 @@
         <li><router-link to="/concerts">Concerts</router-link></li>
         <li><router-link to="/musicians">Musicians</router-link></li>
       </ul>
-      <router-link to="/create-event" class="button-link"
+      <router-link to="/add-new-event" class="button-link"
         >Create Event</router-link
       >
     </div>
@@ -27,7 +27,6 @@ export default {};
   align-items: center;
   color: white;
   font-size: 1.3rem;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0), black 65%);
   z-index: 3;
 
   .nav-width {

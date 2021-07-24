@@ -58,8 +58,7 @@ export default {
 
 <style lang="scss" scoped>
 .concert-details-container {
-  /* background-image: url("https://res.cloudinary.com/djv69vvs7/image/upload/c_scale,w_1367/v1627013128/interiordesign/concert-creator-app/dark-rider-JmVaNyemtN8-unsplash_vzrmag.jpg");
-  background-size: cover; */
+  background: black;
 
   .content-container {
     max-width: 1200px;
