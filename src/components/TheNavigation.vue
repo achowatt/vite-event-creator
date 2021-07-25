@@ -27,7 +27,10 @@
           >
         </li>
       </ul>
-      <router-link to="/add-new-event" class="button-link"
+      <router-link
+        to="/add-new-event"
+        class="button-link"
+        @click="navigationToggle = !navigationToggle"
         >Create Event</router-link
       >
     </div>
