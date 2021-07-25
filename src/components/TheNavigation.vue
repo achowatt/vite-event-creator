@@ -41,7 +41,7 @@
 export default {
   data() {
     return {
-      navigationToggle: true,
+      navigationToggle: false,
     };
   },
   watch: {
