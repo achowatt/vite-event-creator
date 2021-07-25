@@ -4,40 +4,38 @@
       <h1 class="highlight-1">Create event</h1>
       <form @submit.prevent="onSubmit">
         <div id="step-1" class="form-group">
-          <label for="project-title">Step 1: Band Name</label>
+          <label for="band-name">Step 1: Band Name</label>
           <input
             type="text"
-            name="project-title"
-            id="project-title"
-            v-model="title"
-            placeholder="enter project title here"
+            name="band-name"
+            id="band-name"
+            v-model="band"
+            placeholder="enter band name here"
             required
           />
         </div>
         <div id="step-2" class="form-group">
-          <label for="project-description">Step 2: Add Description</label>
+          <label for="band-description">Step 2: Add Description</label>
           <textarea
             type="text"
-            name="project-description"
-            id="project-description"
+            name="band-description"
+            id="band-description"
             v-model="description"
             placeholder="tell us about your awesome music"
             required
           />
         </div>
         <div id="step-3" class="form-group">
-          <label for="" ref="step3heading">Step 3: Add your Band members</label>
+          <label for="band-images" ref="step3heading"
+            >Step 3: Add your Band members</label
+          >
           <p class="error" v-if="showError">Please add at least one member</p>
-          <div class="band-images">
-            <div
-              v-for="({ id, imageUrl, fullName, jobTitle }, index) in users"
-              :key="id"
-            >
+          <div class="band-images" id="band-images">
+            <div v-for="({ id, imageUrl, fullName }, index) in users" :key="id">
               <UserList
                 :id="id"
                 :imageUrl="imageUrl"
                 :fullName="fullName"
-                :jobTitle="jobTitle"
                 :index="index"
                 @add="add"
                 @remove="remove"
@@ -48,28 +46,30 @@
         </div>
         <div id="step-4" class="form-group">
           <label for="concert-date">Step 4: concert date</label>
-          <input type="date" id="concert-date" required />
+          <input type="date" id="concert-date" v-model="date" required />
         </div>
         <div id="step-5" class="form-group">
           <label for="concert-time">Step 5: concert time</label>
-          <input type="time" id="concert-time" required />
+          <input type="time" id="concert-time" v-model="time" required />
         </div>
         <div id="step-6" class="form-group">
           <label for="concert-location">Step 6: location</label>
-          <input type="text" id="concert-location" required />
+          <input
+            type="text"
+            id="concert-location"
+            v-model="location"
+            required
+          />
         </div>
         <div id="step-7" class="form-group">
           <label for="concert-image">Step 7: Add Image</label>
-          <!-- <input
-            type="url"
-            name="url"
+          <input
+            type="file"
             id="concert-image"
-            placeholder="https://example-image.com"
-            pattern="https://.*"
-            size="30"
+            accept="image/*"
+            @change="uploadImage"
             required
-          /> -->
-          <input type="file" id="concert-image" :change="testImage" required />
+          />
         </div>
         <div id="step-8" class="confirm">
           <h1 class="highlight-1">
@@ -79,13 +79,19 @@
           <div class="confirm-project">
             <div class="group">
               <p class="confirm-title">Band Name:</p>
-              <p>{{ title }}</p>
+              <p>{{ band }}</p>
             </div>
             <div class="group">
               <p class="confirm-title">Description:</p>
               <p>{{ description }}</p>
             </div>
-            <p class="confirm-title">Band Members:</p>
+            <div class="group">
+              <p class="confirm-title">Image</p>
+              <div class="image-preview" id="preview">
+                <img v-if="previewImage" :src="previewImage" />
+              </div>
+            </div>
+            <p class="confirm-title">Musicians:</p>
             <div class="group">
               <p class="confirm-title">Date:</p>
               <p>{{ date }}</p>
@@ -108,7 +114,6 @@
           <button type="submit">Create event</button>
         </div>
       </form>
-      {{ testImage }}
     </div>
   </div>
 </template>
@@ -117,8 +122,32 @@
 export default {
   data() {
     return {
-      testImage: "",
+      band: null,
+      description: null,
+      date: null,
+      time: null,
+      location: null,
+      bandImage: null,
+      previewImage: null,
     };
+  },
+  methods: {
+    uploadImage(e) {
+      const file = e.target.files[0];
+      this.bandImage = file;
+      this.previewImage = URL.createObjectURL(file);
+    },
+    onSubmit() {
+      const bandInfo = {
+        band: this.band,
+        description: this.description,
+        date: this.date,
+        time: this.time,
+        location: this.location,
+        bandImage: this.bandImage,
+      };
+      //send info to firebase
+    },
   },
 };
 </script>
@@ -232,7 +261,7 @@ export default {
       line-height: 2;
     }
     .confirm-title {
-      color: grey;
+      color: rgb(255, 191, 138);
       border-bottom: solid 1px rgb(228, 228, 228);
     }
     .group {
@@ -279,6 +308,10 @@ export default {
       background: rgb(0, 68, 255);
       color: white;
     }
+  }
+  .image-preview img {
+    width: 100%;
+    height: auto;
   }
 }
 </style>

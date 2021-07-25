@@ -39,7 +39,8 @@ html {
 }
 
 body {
-  background: radial-gradient(100% 225% at 100% 0%, #120037 0%, #000000 100%),
+  background: black;
+  /* background: radial-gradient(100% 225% at 100% 0%, #120037 0%, #000000 100%),
     linear-gradient(35deg, #c0ffc7 0%, #17001f 75%),
     linear-gradient(55deg, #2400ff 0%, #000000 100%),
     linear-gradient(
@@ -64,7 +65,7 @@ body {
       #6eb6e7 80%,
       #6eb6e7 100%
     );
-  background-blend-mode: screen, overlay, overlay, darken, normal;
+  background-blend-mode: screen, overlay, overlay, darken, normal; */
 }
 
 .main-wrapper {
