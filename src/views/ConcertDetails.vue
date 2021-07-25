@@ -79,18 +79,6 @@ export default {
   background-attachment: fixed;
   position: relative;
 
-  &::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.37);
-    background-attachment: fixed;
-    z-index: -1;
-  }
-
   .content-container {
     max-width: 1200px;
     padding: 2rem;

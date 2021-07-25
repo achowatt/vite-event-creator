@@ -45,23 +45,6 @@ export default {
   background-attachment: fixed;
   position: relative;
 
-  &::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      to bottom,
-      rgb(0, 0, 0),
-      rgba(0, 0, 0, 0) 15% 90%,
-      rgb(0, 0, 0)
-    );
-    background-attachment: fixed;
-    pointer-events: none;
-  }
-
   h2 {
     font-size: 2rem;
   }

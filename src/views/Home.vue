@@ -31,22 +31,6 @@ export default {};
   background-image: url("https://res.cloudinary.com/djv69vvs7/image/upload/c_scale,w_1443/v1627011288/interiordesign/concert-creator-app/yannis-papanastasopoulos-yWF2LLan-_o-unsplash_c9mur3.jpg");
   background-size: cover;
   filter: contrast(1.5);
-  &::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      to bottom,
-      rgb(0, 0, 0),
-      rgba(0, 0, 0, 0) 15% 90%,
-      rgb(0, 0, 0)
-    );
-    background-attachment: fixed;
-    pointer-events: none;
-  }
 
   .content-wrapper {
     display: flex;
