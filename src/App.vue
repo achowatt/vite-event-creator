@@ -67,8 +67,8 @@ body {
   /* background-blend-mode: screen, overlay, overlay, darken, normal; */
   background: black;
   background-image: url("./src/assets/music_image.svg");
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
+  /* background-repeat: no-repeat;
+  background-position: 50% 50%; */
 }
 
 .main-wrapper {
