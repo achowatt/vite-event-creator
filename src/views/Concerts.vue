@@ -42,7 +42,7 @@ export default {
   background-image: url("https://res.cloudinary.com/djv69vvs7/image/upload/c_scale,w_1367/v1627013128/interiordesign/concert-creator-app/dark-rider-JmVaNyemtN8-unsplash_vzrmag.jpg");
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: right;
+  background-position: right top;
   filter: contrast(1.1);
   background-attachment: fixed;
   position: relative;

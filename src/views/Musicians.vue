@@ -40,7 +40,7 @@ export default {
   background-image: url("https://res.cloudinary.com/djv69vvs7/image/upload/c_fit,h_868,w_1147/v1627064655/interiordesign/concert-creator-app/bayu-martdiansyah-jKhtwPg-ELc-unsplash_ic5yyo.jpg");
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: right;
+  background-position: right top;
   filter: contrast(1.1);
   background-attachment: fixed;
   position: relative;
