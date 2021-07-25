@@ -83,6 +83,9 @@ h1 {
   font-size: 4rem;
   margin-bottom: 2rem;
   text-transform: uppercase;
+  @media screen and (max-width: 740px) {
+    font-size: 3rem;
+  }
 }
 
 h2 {

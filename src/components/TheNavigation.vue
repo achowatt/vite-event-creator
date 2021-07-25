@@ -1,10 +1,31 @@
 <template>
-  <div id="nav" class="nav-container">
+  <div
+    class="nav-button"
+    :class="{ opened: navigationToggle }"
+    @click="navigationToggle = !navigationToggle"
+  ></div>
+  <div id="nav" class="nav-container" :class="{ slideIn: navigationToggle }">
     <div class="nav-width">
       <ul>
-        <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/concerts">Concerts</router-link></li>
-        <li><router-link to="/musicians">Musicians</router-link></li>
+        <li>
+          <router-link to="/" @click="navigationToggle = !navigationToggle"
+            >Home</router-link
+          >
+        </li>
+        <li>
+          <router-link
+            to="/concerts"
+            @click="navigationToggle = !navigationToggle"
+            >Concerts</router-link
+          >
+        </li>
+        <li>
+          <router-link
+            to="/musicians"
+            @click="navigationToggle = !navigationToggle"
+            >Musicians</router-link
+          >
+        </li>
       </ul>
       <router-link to="/add-new-event" class="button-link"
         >Create Event</router-link
@@ -14,15 +35,29 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      navigationToggle: true,
+    };
+  },
+  watch: {
+    navigationToggle(newValue) {
+      console.log(newValue);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
+.nav-button {
+  display: none;
+}
 .nav-container {
   position: fixed;
   width: 100%;
   display: flex;
-  height: 8rem;
+  min-height: 8rem;
   justify-content: center;
   align-items: center;
   color: white;
@@ -40,6 +75,7 @@ export default {};
   ul {
     display: flex;
     align-items: center;
+
     li:not(:last-child) {
       margin-right: 2rem;
     }
@@ -56,6 +92,91 @@ export default {};
       background: rgb(255, 102, 0);
       border: 1px solid rgb(255, 102, 0);
       color: white;
+    }
+  }
+}
+
+@media screen and (max-width: 455px) {
+  .nav-button {
+    display: block;
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    top: 1rem;
+    right: 2rem;
+    z-index: 4;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -20px;
+      margin-top: -5px;
+      width: 40px;
+      height: 2px;
+      background: orange;
+      transition: transform 0.3s;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -20px;
+      margin-top: 5px;
+      width: 40px;
+      height: 2px;
+      background: orange;
+      transition: transform 0.3s;
+    }
+  }
+
+  .opened {
+    &.nav-button::before {
+      transform: translateY(5px) rotateZ(45deg);
+      transform-origin: 50% 50%;
+      transition: transform 0.3s;
+    }
+
+    &.nav-button::after {
+      transform: translateY(-5px) rotateZ(-45deg);
+      transform-origin: 50% 50%;
+      transition: transform 0.3s;
+    }
+  }
+
+  .nav-container {
+    height: 100%;
+    font-size: 1.2rem;
+    background: rgba(0, 0, 0, 0.911);
+    transform: translateX(100vw);
+    transition: transform 0.3s;
+    .nav-width {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    ul {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100px;
+      margin-bottom: 2rem;
+
+      li:not(:last-child) {
+        margin-right: 0rem;
+      }
+    }
+    .button-link {
+      padding: 0.5rem 0;
+      width: 120px;
+      text-align: center;
+    }
+
+    &.slideIn {
+      transform: translateX(0vw);
     }
   }
 }

@@ -28,7 +28,7 @@
         <div id="step-3" class="form-group">
           <label for="" ref="step3heading">Step 3: Add your Band members</label>
           <p class="error" v-if="showError">Please add at least one member</p>
-          <div class="Band-images">
+          <div class="band-images">
             <div
               v-for="({ id, imageUrl, fullName, jobTitle }, index) in users"
               :key="id"
@@ -58,10 +58,23 @@
           <label for="concert-location">Step 6: location</label>
           <input type="text" id="concert-location" required />
         </div>
-        <div id="step-5" class="confirm">
+        <div id="step-7" class="form-group">
+          <label for="concert-image">Step 7: Add Image</label>
+          <!-- <input
+            type="url"
+            name="url"
+            id="concert-image"
+            placeholder="https://example-image.com"
+            pattern="https://.*"
+            size="30"
+            required
+          /> -->
+          <input type="file" id="concert-image" :change="testImage" required />
+        </div>
+        <div id="step-8" class="confirm">
           <h1 class="highlight-1">
             Confirm and create
-            <span class="highlight-2"> your amazing band!</span>
+            <span class="highlight-2"> event!</span>
           </h1>
           <div class="confirm-project">
             <div class="group">
@@ -73,6 +86,18 @@
               <p>{{ description }}</p>
             </div>
             <p class="confirm-title">Band Members:</p>
+            <div class="group">
+              <p class="confirm-title">Date:</p>
+              <p>{{ date }}</p>
+            </div>
+            <div class="group">
+              <p class="confirm-title">Time:</p>
+              <p>{{ time }}</p>
+            </div>
+            <div class="group">
+              <p class="confirm-title">Location:</p>
+              <p>{{ location }}</p>
+            </div>
           </div>
           <ul class="confirm-members">
             <li v-for="{ fullName, jobTitle, id } in chosenMembers" :key="id">
@@ -83,12 +108,19 @@
           <button type="submit">Create event</button>
         </div>
       </form>
+      {{ testImage }}
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      testImage: "",
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -183,7 +215,7 @@ export default {};
     }
   }
 
-  .Band-images {
+  .band-images {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-gap: 1rem;
