@@ -61,7 +61,7 @@ export default {
       rgb(0, 0, 0)
     );
     background-attachment: fixed;
-    z-index: -1;
+    pointer-events: none;
   }
 
   .content-container {
