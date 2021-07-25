@@ -57,7 +57,7 @@ export default {
     background: linear-gradient(
       to bottom,
       rgb(0, 0, 0),
-      rgba(255, 255, 255, 0) 15% 90%,
+      rgba(0, 0, 0, 0) 15% 90%,
       rgb(0, 0, 0)
     );
     background-attachment: fixed;
