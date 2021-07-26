@@ -25,7 +25,7 @@
             required
           />
         </div>
-        <div id="step-3" class="form-group">
+        <!-- <div id="step-3" class="form-group">
           <label for="band-images" ref="step3heading"
             >Step 3: Add your Band members</label
           >
@@ -43,7 +43,7 @@
               />
             </div>
           </div>
-        </div>
+        </div> -->
         <div id="step-4" class="form-group">
           <label for="concert-date">Step 4: concert date</label>
           <input type="date" id="concert-date" v-model="date" required />
@@ -58,18 +58,26 @@
             type="text"
             id="concert-location"
             v-model="location"
+            placeholder="Address, City"
             required
           />
         </div>
         <div id="step-7" class="form-group">
           <label for="concert-image">Step 7: Add Image</label>
           <input
+            type="url"
+            id="concert-image"
+            v-model="bandImage"
+            required
+            placeholder="https://www.example-image.com"
+          />
+          <!-- <input
             type="file"
             id="concert-image"
             accept="image/*"
             @change="uploadImage"
             required
-          />
+          /> -->
         </div>
         <div id="step-8" class="confirm">
           <h1 class="highlight-1">
@@ -88,7 +96,7 @@
             <div class="group">
               <p class="confirm-title">Image</p>
               <div class="image-preview" id="preview">
-                <img v-if="previewImage" :src="previewImage" />
+                <img v-if="bandImage" :src="bandImage" />
               </div>
             </div>
             <p class="confirm-title">Musicians:</p>
@@ -119,6 +127,7 @@
 </template>
 
 <script>
+import { createConcert } from "@/firebase.js";
 export default {
   data() {
     return {
@@ -128,15 +137,14 @@ export default {
       time: null,
       location: null,
       bandImage: null,
-      previewImage: null,
     };
   },
   methods: {
-    uploadImage(e) {
-      const file = e.target.files[0];
-      this.bandImage = file;
-      this.previewImage = URL.createObjectURL(file);
-    },
+    // uploadImage(e) {
+    //   const file = e.target.files[0];
+    //   this.bandImage = file;
+    //   this.previewImage = URL.createObjectURL(file);
+    // },
     onSubmit() {
       const bandInfo = {
         band: this.band,
@@ -145,8 +153,12 @@ export default {
         time: this.time,
         location: this.location,
         bandImage: this.bandImage,
+        slug: this.convertToSlug(this.band),
       };
-      //send info to firebase
+      createConcert(bandInfo); //send info to firebase
+    },
+    convertToSlug(band) {
+      return band.toLowerCase().split(" ").join("-");
     },
   },
 };

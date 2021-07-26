@@ -1,6 +1,8 @@
 <template>
   <div>
-    <TheNavigation />
+    <TheNavigation
+      v-if="!['musician.bio', 'concert.details'].includes($route.name)"
+    />
     <router-view v-slot="{ Component }">
       <transition name="slide" mode="out-in">
         <component

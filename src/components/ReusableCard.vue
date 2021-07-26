@@ -16,7 +16,7 @@ export default {
   },
   computed: {
     imageBG() {
-      return `url(${this.info.image})`;
+      return `url(${this.info.bandImage || this.info.image})`;
     },
   },
 };

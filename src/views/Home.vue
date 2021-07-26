@@ -7,7 +7,10 @@
         <h1 class="share-your-passion">Share your passion.</h1>
       </div>
       <div class="button-container">
-        <router-link to="/create-event" class="create-event-btn btn"
+        <router-link
+          to="/add-new-event"
+          class="button-link"
+          @click="toggleNav()"
           >Create Event</router-link
         >
         <router-link to="/add-new-musician" class="new-profile-btn btn"
@@ -41,7 +44,7 @@ export default {};
     h1 {
       padding: 0.5rem;
       &.find-live-concerts {
-        background: rgba(161, 158, 156, 0.151);
+        background: rgba(255, 187, 0, 0.562);
       }
       &.meet-musicians {
         background: rgba(33, 67, 117, 0.5);

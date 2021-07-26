@@ -12,7 +12,7 @@
           }"
         >
           <ReusableCard :info="concertInfo">
-            <h2>{{ concertInfo.bandName }}</h2>
+            <h2>{{ concertInfo.band }}</h2>
             <p>{{ concertInfo.date }}</p>
             <p>{{ concertInfo.location }}</p>
             <p>{{ concertInfo.time }}</p>
@@ -24,14 +24,17 @@
 </template>
 
 <script>
-import sourceData from "@/data.json";
 import ReusableCard from "@/components/ReusableCard.vue";
+import { fetchConcerts } from "@/firebase.js";
 export default {
   components: { ReusableCard },
   data() {
     return {
-      concerts: sourceData.concerts,
+      concerts: [],
     };
+  },
+  created() {
+    fetchConcerts().then((concerts) => (this.concerts = concerts));
   },
 };
 </script>

@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "@/views/Home.vue";
-import sourceData from "@/data.json";
-import musicianData from "@/musicians.json";
+import { getMusician, getConcert } from "@/firebase.js";
 
 const routes = [
   {
@@ -13,11 +12,6 @@ const routes = [
     path: "/musicians",
     name: "Musicians",
     component: () => import("@/views/Musicians.vue"),
-  },
-  {
-    path: "/musicians/bio",
-    name: "Bio",
-    component: () => import("@/views/Bio.vue"),
   },
   {
     path: "/add-new-musician",
@@ -45,9 +39,7 @@ const routes = [
     component: () => import("@/views/ConcertDetails.vue"),
     beforeEnter(to, from) {
       //navigation gaurd to check if page exists
-      const exists = sourceData.concerts.find(
-        (concert) => concert.id === parseInt(to.params.id)
-      );
+      const exists = getConcert(to.params.id);
       if (!exists)
         return {
           name: "NotFound",
@@ -59,13 +51,11 @@ const routes = [
   },
   {
     path: "/musicians/:id",
-    name: "musician.details",
-    component: () => import("@/views/MusicianDetails.vue"),
+    name: "musician.bio",
+    component: () => import("@/views/MusicianBio.vue"),
     beforeEnter(to, from) {
       //navigation gaurd to check if page exists
-      const exists = musicianData.musicians.find(
-        (musician) => musician.id === parseInt(to.params.id)
-      );
+      const exists = getMusician(to.params.id);
       if (!exists)
         return {
           name: "NotFound",
@@ -74,10 +64,6 @@ const routes = [
           hash: to.hash,
         };
     },
-  },
-  {
-    path: "/bio/:id/:slug",
-    component: () => import("@/views/ConcertDetails.vue"),
   },
   {
     path: "/:pathMatch(.*)*",

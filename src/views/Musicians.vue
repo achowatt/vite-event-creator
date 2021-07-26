@@ -5,7 +5,7 @@
       <div class="musician-list">
         <router-link
           v-for="musician in musicians"
-          :to="{ name: 'musician.details', params: { id: musician.id } }"
+          :to="{ name: 'musician.bio', params: { id: musician.id } }"
           :key="musician.id"
         >
           <ReusableCard :info="musician">
@@ -21,15 +21,19 @@
 </template>
 
 <script>
-import musicianData from "@/musicians.json";
+// import musicianData from "@/musicians.json";
 import ReusableCard from "@/components/ReusableCard.vue";
+import { fetchMusicians } from "@/firebase.js";
 
 export default {
   components: { ReusableCard },
   data() {
     return {
-      musicians: musicianData.musicians,
+      musicians: [],
     };
+  },
+  created() {
+    fetchMusicians().then((musicians) => (this.musicians = musicians));
   },
 };
 </script>

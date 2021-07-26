@@ -1,11 +1,15 @@
 <template>
   <div id="concert-details" class="concert-details-container">
-    <div class="content-container">
-      <GoBack />
-      <div class="band-image" :style="{ backgroundImage: imageBG }">
-        <h1>{{ concert.bandName }}</h1>
-        <p>{{ concert.date }}</p>
+    <GoBack />
+    <div class="band-image" :style="{ backgroundImage: imageBG }">
+      <div class="content-container move-bottom">
+        <h1>{{ concert.band }}</h1>
+        <p>Location: {{ concert.location }}</p>
+        <p>Date: {{ concert.date }}</p>
+        <p>Time: {{ concert.time }}</p>
       </div>
+    </div>
+    <div class="content-container">
       <div class="about">
         <p>About</p>
         <p>
@@ -15,10 +19,11 @@
           soluta recusandae repellendus reiciendis!
         </p>
       </div>
+
       <h2>Meet the musicians</h2>
-      <!-- Concert Details {{ $route.params.id }} -->
+
       <div
-        v-for="musician in concert.musicians"
+        v-for="musician in musicians"
         :key="musician.id"
         :id="musician.id"
         class="musician-section"
@@ -33,7 +38,7 @@
         <div class="musician-info">
           <h3 class="name">{{ musician.fullName }}</h3>
           <p class="bio">
-            {{ musician.bio }} Lorem ipsum dolor sit, amet consectetur
+            {{ musician.about }} Lorem ipsum dolor sit, amet consectetur
             adipisicing elit. Sunt odio reprehenderit aliquid fuga excepturi.
             Incidunt explicabo molestias eum non illum reprehenderit. Obcaecati
             earum atque ducimus, consectetur soluta recusandae repellendus
@@ -49,69 +54,88 @@
 </template>
 
 <script>
-import sourceData from "@/data.json";
 import GoBack from "@/components/GoBack.vue";
+import { getConcert, getMusician } from "@/firebase.js";
 export default {
   components: { GoBack },
+  data() {
+    return {
+      concert: {},
+      musicians: [],
+    };
+  },
   computed: {
-    concertId() {
-      return parseInt(this.$route.params.id);
-    },
-    concert() {
-      return sourceData.concerts.find(
-        (concert) => concert.id === this.concertId
-      );
-    },
     imageBG() {
-      return `url(${this.concert.image})`;
+      return `url("${this.concert.bandImage}")`;
     },
+  },
+  created() {
+    getConcert(this.$route.params.id).then((data) => {
+      //set concert data
+      this.concert = data;
+
+      //set musician data
+      for (const m of data.musicians) {
+        getMusician(m.id).then((data) => {
+          this.musicians.push(data);
+        });
+      }
+    });
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .concert-details-container {
-  background: black;
-  /* background-image: url("https://res.cloudinary.com/djv69vvs7/image/upload/c_scale,w_993/v1627092319/interiordesign/concert-creator-app/jacob-kiesow-XakAFeeQZI0-unsplash_iozekf.jpg"); */
-  background-size: cover;
-  background-position: right;
-  filter: contrast(1.1);
-  background-attachment: fixed;
   position: relative;
+
+  .band-image {
+    width: 100%;
+    height: 40rem;
+    max-height: 100vh;
+    margin-top: -8rem;
+    background-size: cover;
+    position: relative;
+    z-index: -1;
+    background-position: 50% 0%;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0) 0 4%,
+        rgba(255, 255, 255, 0)
+      );
+      z-index: -1;
+    }
+    .move-bottom {
+      position: relative;
+      top: 23rem;
+      h1 {
+        margin: 0;
+        text-shadow: 2px 2px 10px #000000a8;
+      }
+      p {
+        margin: 0;
+        text-shadow: 2px 2px 10px #000000a8;
+      }
+    }
+  }
 
   .content-container {
     max-width: 1200px;
     padding: 2rem;
     margin: 0 auto;
     position: relative;
-    background: rgba(0, 0, 0, 0.336);
-  }
-
-  h1 {
-    text-shadow: 2px 2px 10px #000000a8;
-  }
-
-  .band-image {
-    width: 100%;
-    height: 20rem;
-    background-size: cover;
-    background-position-y: 50%;
-    margin-bottom: 5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding-left: 2rem;
-    h1 {
-      margin-bottom: 0rem;
-    }
   }
 
   h2 {
-    margin-top: 3rem;
-    /* background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    background-image: linear-gradient(rgb(255, 208, 0), rgb(255, 174, 0)); */
+    margin: 3rem 0;
   }
 
   .about {
@@ -133,11 +157,14 @@ export default {
     margin-bottom: 5rem;
     align-items: center;
     /* background: rgba(0, 0, 0, 0.493); */
+    h3 {
+      margin-bottom: 1rem;
+    }
 
     &:nth-of-type(odd) {
       div:nth-of-type(odd) {
         order: 2;
-        padding-left: 5rem;
+        padding-left: 3rem;
       }
       div:nth-of-type(even) {
         order: 1;
@@ -147,7 +174,7 @@ export default {
 
     &:nth-of-type(even) {
       div:nth-of-type(odd) {
-        padding-right: 5rem;
+        padding-right: 3rem;
       }
     }
 

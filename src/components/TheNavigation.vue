@@ -8,29 +8,20 @@
     <div class="nav-width">
       <ul>
         <li>
-          <router-link to="/" @click="navigationToggle = !navigationToggle"
-            >Home</router-link
-          >
+          <router-link to="/" @click="toggleNav()">Home</router-link>
         </li>
         <li>
-          <router-link
-            to="/concerts"
-            @click="navigationToggle = !navigationToggle"
+          <router-link to="/concerts" @click="toggleNav()"
             >Concerts</router-link
           >
         </li>
         <li>
-          <router-link
-            to="/musicians"
-            @click="navigationToggle = !navigationToggle"
+          <router-link to="/musicians" @click="toggleNav()"
             >Musicians</router-link
           >
         </li>
       </ul>
-      <router-link
-        to="/add-new-event"
-        class="button-link"
-        @click="navigationToggle = !navigationToggle"
+      <router-link to="/add-new-event" class="button-link" @click="toggleNav()"
         >Create Event</router-link
       >
     </div>
@@ -43,6 +34,13 @@ export default {
     return {
       navigationToggle: false,
     };
+  },
+  methods: {
+    toggleNav() {
+      if (this.navigationToggle === true) {
+        this.navigationToggle = false;
+      }
+    },
   },
   watch: {
     navigationToggle(newValue) {
