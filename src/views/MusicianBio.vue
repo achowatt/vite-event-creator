@@ -1,6 +1,5 @@
 <template>
   <div class="musician-details-container">
-    <GoBack />
     <div class="musician-image" :style="{ backgroundImage: imageURL }">
       <div>
         <h1>{{ musician.fullName }}</h1>
@@ -75,6 +74,13 @@ export default {
   position: relative;
   z-index: -1;
 
+  .back-to-musicians {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 5;
+    font-weight: bold;
+  }
   .musician-image {
     width: 100%;
     height: 50rem;

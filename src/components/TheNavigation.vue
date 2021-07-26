@@ -42,11 +42,11 @@ export default {
       }
     },
   },
-  watch: {
-    navigationToggle(newValue) {
-      console.log(newValue);
-    },
-  },
+  // watch: {
+  //   navigationToggle(newValue) {
+  //     console.log(newValue);
+  //   },
+  // },
 };
 </script>
 
@@ -64,8 +64,7 @@ export default {
   color: white;
   font-size: 1.3rem;
   z-index: 3;
-  background: rgba(0, 0, 0, 0.781);
-
+  background: linear-gradient(black, rgba(0, 0, 0, 0.637), rgba(0, 0, 0, 0));
   .nav-width {
     display: flex;
     max-width: 1200px;
@@ -103,7 +102,7 @@ export default {
     width: 50px;
     height: 50px;
     position: fixed;
-    top: 1rem;
+    top: 2rem;
     right: 2rem;
     z-index: 4;
 

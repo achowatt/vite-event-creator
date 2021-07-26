@@ -1,8 +1,6 @@
 <template>
   <div>
-    <TheNavigation
-      v-if="!['musician.bio', 'concert.details'].includes($route.name)"
-    />
+    <TheNavigation />
     <router-view v-slot="{ Component }">
       <transition name="slide" mode="out-in">
         <component
@@ -42,32 +40,6 @@ html {
 
 body {
   background: black;
-  /* background: radial-gradient(100% 225% at 100% 0%, #120037 0%, #000000 100%),
-    linear-gradient(35deg, #c0ffc7 0%, #17001f 75%),
-    linear-gradient(55deg, #2400ff 0%, #000000 100%),
-    linear-gradient(
-      90deg,
-      #ffe037 0%,
-      #ffe037 40%,
-      #1dcd9f 40%,
-      #1dcd9f 50%,
-      #088c6f 50%,
-      #088c6f 70%,
-      #23033c 70%,
-      #23033c 100%
-    ),
-    linear-gradient(
-      180deg,
-      #ff8fe5 0%,
-      #ff8fe5 45%,
-      #fbff64 45%,
-      #fbff64 60%,
-      #76e3ff 60%,
-      #76e3ff 80%,
-      #6eb6e7 80%,
-      #6eb6e7 100%
-    );
-  background-blend-mode: screen, overlay, overlay, darken, normal; */
 }
 
 .main-wrapper {
@@ -112,6 +84,7 @@ a {
 
 button {
   border: none;
+  cursor: pointer;
 }
 
 //Styling link for active page

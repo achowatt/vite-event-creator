@@ -50,7 +50,7 @@ const routes = [
     },
   },
   {
-    path: "/musicians/:id",
+    path: "/musicians/:id/:slug",
     name: "musician.bio",
     component: () => import("@/views/MusicianBio.vue"),
     beforeEnter(to, from) {

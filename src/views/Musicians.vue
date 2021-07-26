@@ -5,7 +5,10 @@
       <div class="musician-list">
         <router-link
           v-for="musician in musicians"
-          :to="{ name: 'musician.bio', params: { id: musician.id } }"
+          :to="{
+            name: 'musician.bio',
+            params: { id: musician.id, slug: musician.slug },
+          }"
           :key="musician.id"
         >
           <ReusableCard :info="musician">

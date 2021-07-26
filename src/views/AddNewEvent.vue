@@ -1,142 +1,154 @@
 <template>
-  <div class="add-new-event-container">
-    <div class="content-container">
-      <h1 class="highlight-1">Create event</h1>
-      <form @submit.prevent="onSubmit">
-        <div id="step-1" class="form-group">
-          <label for="band-name">Step 1: Band Name</label>
-          <input
-            type="text"
-            name="band-name"
-            id="band-name"
-            v-model="band"
-            placeholder="enter band name here"
-            required
-          />
-        </div>
-        <div id="step-2" class="form-group">
-          <label for="band-description">Step 2: Add Description</label>
-          <textarea
-            type="text"
-            name="band-description"
-            id="band-description"
-            v-model="description"
-            placeholder="tell us about your awesome music"
-            required
-          />
-        </div>
-        <!-- <div id="step-3" class="form-group">
-          <label for="band-images" ref="step3heading"
-            >Step 3: Add your Band members</label
-          >
-          <p class="error" v-if="showError">Please add at least one member</p>
-          <div class="band-images" id="band-images">
-            <div v-for="({ id, imageUrl, fullName }, index) in users" :key="id">
-              <UserList
-                :id="id"
-                :imageUrl="imageUrl"
-                :fullName="fullName"
-                :index="index"
-                @add="add"
-                @remove="remove"
-                @openBio="openBio"
-              />
-            </div>
+  <div>
+    <BioModal v-if="modal.opened" :info="modal.info" @closeBio="closeBio" />
+    <div class="add-new-event-container">
+      <div class="content-container">
+        <h1 class="highlight-1">Create event</h1>
+        <form @submit.prevent="onSubmit">
+          <div id="step-1" class="form-group">
+            <label for="band-name">Step 1: Band Name</label>
+            <input
+              type="text"
+              name="band-name"
+              id="band-name"
+              v-model="band"
+              placeholder="enter band name here"
+              required
+            />
           </div>
-        </div> -->
-        <div id="step-4" class="form-group">
-          <label for="concert-date">Step 4: concert date</label>
-          <input type="date" id="concert-date" v-model="date" required />
-        </div>
-        <div id="step-5" class="form-group">
-          <label for="concert-time">Step 5: concert time</label>
-          <input type="time" id="concert-time" v-model="time" required />
-        </div>
-        <div id="step-6" class="form-group">
-          <label for="concert-location">Step 6: location</label>
-          <input
-            type="text"
-            id="concert-location"
-            v-model="location"
-            placeholder="Address, City"
-            required
-          />
-        </div>
-        <div id="step-7" class="form-group">
-          <label for="concert-image">Step 7: Add Image</label>
-          <input
-            type="url"
-            id="concert-image"
-            v-model="bandImage"
-            required
-            placeholder="https://www.example-image.com"
-          />
-          <!-- <input
-            type="file"
-            id="concert-image"
-            accept="image/*"
-            @change="uploadImage"
-            required
-          /> -->
-        </div>
-        <div id="step-8" class="confirm">
-          <h1 class="highlight-1">
-            Confirm and create
-            <span class="highlight-2"> event!</span>
-          </h1>
-          <div class="confirm-project">
-            <div class="group">
-              <p class="confirm-title">Band Name:</p>
-              <p>{{ band }}</p>
-            </div>
-            <div class="group">
-              <p class="confirm-title">Description:</p>
-              <p>{{ description }}</p>
-            </div>
-            <div class="group">
-              <p class="confirm-title">Image</p>
-              <div class="image-preview" id="preview">
-                <img v-if="bandImage" :src="bandImage" />
+          <div id="step-2" class="form-group">
+            <label for="band-description">Step 2: Add Description</label>
+            <textarea
+              type="text"
+              name="band-description"
+              id="band-description"
+              v-model="description"
+              placeholder="tell us about your awesome music"
+              required
+            />
+          </div>
+          <div id="step-3" class="form-group">
+            <label for="band-images" ref="step3heading"
+              >Step 3: Add your Band members</label
+            >
+            <!-- <p class="error" v-if="showError">Please add at least one member</p> -->
+            <div class="band-images" id="band-images">
+              <div
+                v-for="({ id, image, fullName }, index) in musicians"
+                :key="id"
+              >
+                <MusicianList
+                  :id="id"
+                  :image="image"
+                  :fullName="fullName"
+                  :index="index"
+                  @add="add"
+                  @remove="remove"
+                  @openBio="openBio"
+                />
               </div>
             </div>
-            <p class="confirm-title">Musicians:</p>
-            <div class="group">
-              <p class="confirm-title">Date:</p>
-              <p>{{ date }}</p>
-            </div>
-            <div class="group">
-              <p class="confirm-title">Time:</p>
-              <p>{{ time }}</p>
-            </div>
-            <div class="group">
-              <p class="confirm-title">Location:</p>
-              <p>{{ location }}</p>
-            </div>
           </div>
-          <ul class="confirm-members">
-            <li v-for="{ fullName, jobTitle, id } in chosenMembers" :key="id">
-              <span>{{ fullName }}</span
-              >{{ jobTitle }}
-            </li>
-          </ul>
-          <button type="submit">Create event</button>
-        </div>
-      </form>
+          <div id="step-4" class="form-group">
+            <label for="concert-date">Step 4: concert date</label>
+            <input type="date" id="concert-date" v-model="date" required />
+          </div>
+          <div id="step-5" class="form-group">
+            <label for="concert-time">Step 5: concert time</label>
+            <input type="time" id="concert-time" v-model="time" required />
+          </div>
+          <div id="step-6" class="form-group">
+            <label for="concert-location">Step 6: location</label>
+            <input
+              type="text"
+              id="concert-location"
+              v-model="location"
+              placeholder="Address, City"
+              required
+            />
+          </div>
+          <div id="step-7" class="form-group">
+            <label for="concert-image">Step 7: Add Image</label>
+            <input
+              type="url"
+              id="concert-image"
+              v-model="bandImage"
+              required
+              placeholder="https://www.example-image.com"
+            />
+          </div>
+          <div id="step-8" class="confirm">
+            <h1 class="highlight-1">
+              Confirm and create
+              <span class="highlight-2"> event!</span>
+            </h1>
+            <div class="confirm-project">
+              <div class="group">
+                <p class="confirm-title">Band Name:</p>
+                <p>{{ band }}</p>
+              </div>
+              <div class="group">
+                <p class="confirm-title">Description:</p>
+                <p>{{ description }}</p>
+              </div>
+              <div class="group">
+                <p class="confirm-title">Image</p>
+                <div class="image-preview" id="preview">
+                  <img v-if="bandImage" :src="bandImage" />
+                </div>
+              </div>
+              <div class="group">
+                <p class="confirm-title">Musicians:</p>
+                <ul class="confirm-members">
+                  <li
+                    v-for="{ fullName, jobTitle, id } in chosenMusicians"
+                    :key="id"
+                  >
+                    <span>{{ fullName }}</span
+                    >{{ jobTitle }}
+                  </li>
+                </ul>
+              </div>
+              <div class="group">
+                <p class="confirm-title">Date:</p>
+                <p>{{ date }}</p>
+              </div>
+              <div class="group">
+                <p class="confirm-title">Time:</p>
+                <p>{{ time }}</p>
+              </div>
+              <div class="group">
+                <p class="confirm-title">Location:</p>
+                <p>{{ location }}</p>
+              </div>
+            </div>
+            <button type="submit">Create event</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { createConcert } from "@/firebase.js";
+import { createConcert, fetchMusicians } from "@/firebase.js";
+import MusicianList from "@/components/MusicianListForm.vue";
+import BioModal from "@/components/BioModal.vue";
+
 export default {
+  components: { MusicianList, BioModal },
   data() {
     return {
-      band: null,
-      description: null,
-      date: null,
-      time: null,
-      location: null,
-      bandImage: null,
+      band: "",
+      description: "",
+      date: "",
+      time: "",
+      location: "",
+      bandImage: "",
+      musicians: [],
+      chosenMusicians: [],
+      modal: { opened: false, info: {} },
+      showError: false,
     };
   },
   methods: {
@@ -146,6 +158,13 @@ export default {
     //   this.previewImage = URL.createObjectURL(file);
     // },
     onSubmit() {
+      //Error detection - at least 1 musician must be chosen
+      // if (this.chosenMembers.length === 0) {
+      //   this.showError = true;
+      //   this.$refs.step3heading.scrollIntoView({ behavior: "smooth" });
+      //   return;
+      // }
+      //
       const bandInfo = {
         band: this.band,
         description: this.description,
@@ -153,20 +172,50 @@ export default {
         time: this.time,
         location: this.location,
         bandImage: this.bandImage,
+        musicians: this.chosenMusicians,
         slug: this.convertToSlug(this.band),
       };
-      createConcert(bandInfo); //send info to firebase
+      createConcert(bandInfo).then((docRef) => {
+        this.$router.push({ path: `/concerts/${docRef.id}/${bandInfo.slug}` });
+      }); //send info to firebase
     },
     convertToSlug(band) {
       return band.toLowerCase().split(" ").join("-");
     },
+    add(id) {
+      const chosen = this.musicians.filter(
+        (musicians) => musicians.id == id
+      )[0];
+      this.chosenMusicians.push(chosen);
+      this.showError = false;
+    },
+    remove(removeId) {
+      this.chosenMusicians = this.chosenMusicians.filter(
+        (chosen) => chosen.id !== removeId
+      );
+      this.chosenMusicians.length > 0
+        ? (this.showError = false)
+        : (this.showError = true);
+    },
+    openBio(id) {
+      this.modal.info = this.musicians.filter(
+        (musicians) => musicians.id == id
+      )[0];
+      this.modal.opened = true;
+    },
+    closeBio() {
+      this.modal.opened = false;
+    },
+  },
+  created() {
+    fetchMusicians().then((musicians) => (this.musicians = musicians));
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .add-new-event-container {
-  background: rgba(71, 71, 71, 0.61);
+  background: #6bf3f8be;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: right top;

@@ -11,11 +11,38 @@
         <p>{{ info.instrument }}</p>
       </div>
       <div class="modal-body">
-        <h2 class="bio">Biography</h2>
-        <div>
-          <p class="description">
-            {{ info.bio }}
+        <div class="two-column">
+          <p>Biography</p>
+          <p>
+            {{ info.about }} This information is not real. It is merely a
+            placeholder for a website. These images are from unsplash.com (free
+            and legal). Lorem ipsum dolor sit amet consectetur, adipisicing
+            elit. Ipsa itaque laboriosam expedita placeat nam. Consequatur
+            tempore sint quod optio rem veritatis adipisci, autem animi,
+            molestias in dolor eius! Facere, itaque. Lorem ipsum dolor sit amet
+            consectetur, adipisicing elit. Ipsa itaque laboriosam expedita
+            placeat nam. Consequatur tempore sint quod optio rem veritatis
+            adipisci, autem animi, molestias in dolor eius! Facere, itaque.
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa
+            itaque laboriosam expedita placeat nam. Consequatur tempore sint
+            quod optio rem veritatis adipisci, autem animi, molestias in dolor
+            eius! Facere, itaque. Lorem ipsum dolor sit amet consectetur,
+            adipisicing elit. Ipsa itaque laboriosam expedita placeat nam.
+            Consequatur tempore sint quod optio rem veritatis adipisci, autem
+            animi, molestias in dolor eius! Facere, itaque.
           </p>
+        </div>
+        <div class="two-column">
+          <p>Website</p>
+          <p>{{ info.website }}</p>
+        </div>
+        <div class="two-column">
+          <p>Phone</p>
+          <p>{{ info.phone }}</p>
+        </div>
+        <div class="two-column">
+          <p>Social Media</p>
+          <p></p>
         </div>
       </div>
     </div>
@@ -28,7 +55,7 @@ export default {
   props: ["info"],
   data() {
     return {
-      imageBG: `url(${this.info.imageUrl})`,
+      imageBG: `url(${this.info.image})`,
     };
   },
   methods: {
@@ -52,21 +79,36 @@ export default {
   height: 100vh;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.753);
-
+  background: rgba(0, 0, 0, 0.858);
   .close-button {
     font-size: 2rem;
     color: rgb(49, 49, 49);
     background: transparent;
     position: absolute;
-    top: 0;
+    top: 1rem;
     right: 2rem;
     z-index: 99;
     @media screen and (max-width: 900px) {
       position: fixed;
     }
   }
-
+  .two-column {
+    display: flex;
+    @media screen and (max-width: 700px) {
+      flex-direction: column;
+    }
+    p {
+      line-height: 2;
+    }
+    p:first-child {
+      flex: 2;
+      color: orange;
+    }
+    p:last-child {
+      flex: 10;
+      color: black;
+    }
+  }
   .modal-container {
     position: absolute;
     left: 50%;
@@ -110,13 +152,6 @@ export default {
 
     .modal-body {
       padding: 2rem;
-      .bio {
-        margin-bottom: 1rem;
-      }
-      .description {
-        margin-top: 1rem;
-        line-height: 1.5;
-      }
     }
   }
 }

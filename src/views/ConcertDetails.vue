@@ -1,6 +1,5 @@
 <template>
   <div id="concert-details" class="concert-details-container">
-    <GoBack />
     <div class="band-image" :style="{ backgroundImage: imageBG }">
       <div class="content-container move-bottom">
         <h1>{{ concert.band }}</h1>
@@ -73,7 +72,7 @@ export default {
     getConcert(this.$route.params.id).then((data) => {
       //set concert data
       this.concert = data;
-
+      console.log(data);
       //set musician data
       for (const m of data.musicians) {
         getMusician(m.id).then((data) => {
@@ -164,7 +163,7 @@ export default {
     &:nth-of-type(odd) {
       div:nth-of-type(odd) {
         order: 2;
-        padding-left: 3rem;
+        padding-left: 5rem;
       }
       div:nth-of-type(even) {
         order: 1;
@@ -174,14 +173,16 @@ export default {
 
     &:nth-of-type(even) {
       div:nth-of-type(odd) {
-        padding-right: 3rem;
+        padding-right: 5rem;
       }
     }
 
     .musician-image {
-      width: auto;
-      max-height: 400px;
+      width: 350px;
+      height: 400px;
       border-radius: 5px;
+      object-fit: cover;
+      object-position: left top;
     }
   }
 

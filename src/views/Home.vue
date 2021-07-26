@@ -7,15 +7,12 @@
         <h1 class="share-your-passion">Share your passion.</h1>
       </div>
       <div class="button-container">
-        <router-link
-          to="/add-new-event"
-          class="button-link"
-          @click="toggleNav()"
+        <router-link to="/add-new-event" class="button-link btn"
           >Create Event</router-link
         >
-        <router-link to="/add-new-musician" class="new-profile-btn btn"
+        <!-- <router-link to="/add-new-musician" class="new-profile-btn btn"
           >New Profile</router-link
-        >
+        > -->
       </div>
     </div>
   </div>
@@ -57,17 +54,15 @@ export default {};
 
   .button-container {
     margin: 2rem 0;
-    .btn {
-      padding: 0.5rem;
-      background: transparent;
-      border: none;
-    }
-
-    .create-event-btn {
-      background: white;
+    .button-link {
+      border: 1px solid rgb(255, 102, 0);
       border-radius: 5px;
-      color: black;
-      margin-right: 2rem;
+      padding: 0.5rem;
+      background: rgba(66, 22, 1, 0.877);
+      &:hover {
+        background: rgba(240, 49, 49, 0.877);
+        color: white;
+      }
     }
 
     .new-profile-btn {
