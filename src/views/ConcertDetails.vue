@@ -134,15 +134,16 @@ export default {
     }
     .move-bottom {
       position: relative;
-      top: 30rem;
+      top: 25rem;
+
+      @media screen and (max-width: 700px) {
+        top: 30rem;
+      }
+
       h1 {
         margin: 0;
         text-shadow: 2px 2px 10px #000000a8;
       }
-      /* p {
-        margin: 0;
-        text-shadow: 2px 2px 10px #000000a8;
-      } */
     }
   }
 

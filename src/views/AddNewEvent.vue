@@ -6,7 +6,9 @@
         <h1 class="highlight-1">Create event</h1>
         <form @submit.prevent="onSubmit">
           <div id="step-1" class="form-group">
-            <label for="band-name">Step 1: Band Name</label>
+            <label for="band-name" :class="{ done: band.length > 0 }"
+              >Step 1: Band Name</label
+            >
             <input
               type="text"
               name="band-name"
@@ -17,7 +19,11 @@
             />
           </div>
           <div id="step-2" class="form-group">
-            <label for="band-description">Step 2: Add Description</label>
+            <label
+              for="band-description"
+              :class="{ done: description.length > 0 }"
+              >Step 2: Add Description</label
+            >
             <textarea
               type="text"
               name="band-description"
@@ -28,10 +34,12 @@
             />
           </div>
           <div id="step-3" class="form-group">
-            <label for="band-images" ref="step3heading"
+            <label
+              for="band-images"
+              ref="step3heading"
+              :class="{ done: chosenMusicians.length > 0 }"
               >Step 3: Add your Band members</label
             >
-            <!-- <p class="error" v-if="showError">Please add at least one member</p> -->
             <div class="band-images" id="band-images">
               <div
                 v-for="({ id, image, fullName }, index) in musicians"
@@ -48,17 +56,24 @@
                 />
               </div>
             </div>
+            <p class="error" v-if="showError">Please add at least one member</p>
           </div>
           <div id="step-4" class="form-group">
-            <label for="concert-date">Step 4: concert date</label>
+            <label for="concert-date" :class="{ done: date.length > 0 }"
+              >Step 4: concert date</label
+            >
             <input type="date" id="concert-date" v-model="date" required />
           </div>
           <div id="step-5" class="form-group">
-            <label for="concert-time">Step 5: concert time</label>
+            <label for="concert-time" :class="{ done: time.length > 0 }"
+              >Step 5: concert time</label
+            >
             <input type="time" id="concert-time" v-model="time" required />
           </div>
           <div id="step-6" class="form-group">
-            <label for="concert-location">Step 6: location</label>
+            <label for="concert-location" :class="{ done: location.length > 0 }"
+              >Step 6: location</label
+            >
             <input
               type="text"
               id="concert-location"
@@ -68,7 +83,9 @@
             />
           </div>
           <div id="step-7" class="form-group">
-            <label for="concert-image">Step 7: Add Image</label>
+            <label for="concert-image" :class="{ done: bandImage.length > 0 }"
+              >Step 7: Add Image URL</label
+            >
             <input
               type="url"
               id="concert-image"
@@ -84,41 +101,35 @@
             </h1>
             <div class="confirm-project">
               <div class="group">
-                <p class="confirm-title">Band Name:</p>
+                <p class="confirm-title">Band</p>
                 <p>{{ band }}</p>
               </div>
               <div class="group">
-                <p class="confirm-title">Description:</p>
+                <p class="confirm-title">Description</p>
                 <p>{{ description }}</p>
               </div>
-              <div class="group">
+              <div class="group-preview">
                 <p class="confirm-title">Image</p>
                 <div class="image-preview" id="preview">
                   <img v-if="bandImage" :src="bandImage" />
                 </div>
               </div>
               <div class="group">
-                <p class="confirm-title">Musicians:</p>
-                <ul class="confirm-members">
-                  <li
-                    v-for="{ fullName, jobTitle, id } in chosenMusicians"
-                    :key="id"
-                  >
-                    <span>{{ fullName }}</span
-                    >{{ jobTitle }}
-                  </li>
-                </ul>
+                <p class="confirm-title">Musicians</p>
+                <p if="chosenMembers">
+                  {{ confirmedMembers }}
+                </p>
               </div>
               <div class="group">
-                <p class="confirm-title">Date:</p>
+                <p class="confirm-title">Date</p>
                 <p>{{ date }}</p>
               </div>
               <div class="group">
-                <p class="confirm-title">Time:</p>
+                <p class="confirm-title">Time</p>
                 <p>{{ time }}</p>
               </div>
               <div class="group">
-                <p class="confirm-title">Location:</p>
+                <p class="confirm-title">Location</p>
                 <p>{{ location }}</p>
               </div>
             </div>
@@ -149,22 +160,25 @@ export default {
       chosenMusicians: [],
       modal: { opened: false, info: {} },
       showError: false,
+      done: "done",
     };
   },
+  computed: {
+    confirmedMembers() {
+      return this.chosenMusicians
+        .map((m) => m.fullName + " (" + m.instrument.toUpperCase() + ")")
+        .join(", ");
+    },
+  },
   methods: {
-    // uploadImage(e) {
-    //   const file = e.target.files[0];
-    //   this.bandImage = file;
-    //   this.previewImage = URL.createObjectURL(file);
-    // },
     onSubmit() {
       //Error detection - at least 1 musician must be chosen
-      // if (this.chosenMembers.length === 0) {
-      //   this.showError = true;
-      //   this.$refs.step3heading.scrollIntoView({ behavior: "smooth" });
-      //   return;
-      // }
-      //
+      if (this.chosenMusicians.length === 0) {
+        this.showError = true;
+        this.$refs.step3heading.scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+
       const bandInfo = {
         band: this.band,
         description: this.description,
@@ -193,9 +207,6 @@ export default {
       this.chosenMusicians = this.chosenMusicians.filter(
         (chosen) => chosen.id !== removeId
       );
-      this.chosenMusicians.length > 0
-        ? (this.showError = false)
-        : (this.showError = true);
     },
     openBio(id) {
       this.modal.info = this.musicians.filter(
@@ -215,25 +226,6 @@ export default {
 
 <style lang="scss" scoped>
 .add-new-event-container {
-  background: #6bf3f8be;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: right top;
-  filter: contrast(1.1);
-  background-attachment: fixed;
-  position: relative;
-  &::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgb(0, 0, 0);
-    clip-path: polygon(0 0, 85% 0, 100% 50%, 85% 100%, 0 100%);
-    background-attachment: fixed;
-    z-index: -1;
-  }
   .content-container {
     max-width: 1200px;
     padding: 2rem;
@@ -248,14 +240,9 @@ export default {
     color: #6bf3f8;
   }
 
-  #step-3 {
-    padding-bottom: 4rem;
-    border-bottom: solid 1px rgb(228, 228, 228);
-  }
-
   ::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #b4b3b3;
+    color: #3a3a3a;
     opacity: 1; /* Firefox */
   }
 
@@ -266,7 +253,6 @@ export default {
 
     label {
       font-size: 1.5rem;
-      color: rgb(255, 255, 255);
       font-weight: bold;
       font-family: "Zen Loop", sans-serif;
       text-transform: uppercase;
@@ -277,6 +263,8 @@ export default {
     }
 
     .error {
+      margin-top: 1rem;
+      margin-bottom: 0;
       font-size: 1rem;
       color: red;
       font-weight: bold;
@@ -290,18 +278,15 @@ export default {
       border: none;
       padding: 1rem 1rem;
       border-bottom: solid 1px #e4e4e4;
-      font-size: 2rem;
+      font-size: 1.5rem;
       color: rgb(68, 68, 68);
-      font-family: arial;
+      font-family: Avenir, Helvetica, Arial, sans-serif;
+      border-radius: 5px;
     }
 
     textarea {
       resize: none;
       height: auto;
-    }
-
-    input:focus + label {
-      color: green;
     }
   }
 
@@ -317,16 +302,25 @@ export default {
   }
 
   .confirm-project {
-    p {
-      font-weight: bold;
-      line-height: 2;
-    }
-    .confirm-title {
-      color: rgb(255, 191, 138);
-      border-bottom: solid 1px rgb(228, 228, 228);
+    .group-preview {
+      color: orange;
+      margin-bottom: 2rem;
     }
     .group {
-      margin-bottom: 2rem;
+      display: flex;
+      @media screen and (max-width: 400px) {
+        flex-direction: column;
+      }
+      p {
+        line-height: 2;
+      }
+      p:first-child {
+        flex: 3;
+        color: orange;
+      }
+      p:last-child {
+        flex: 8;
+      }
     }
   }
 
@@ -364,6 +358,8 @@ export default {
     text-transform: uppercase;
     font-weight: bold;
     transition: background 0.3s;
+    font-family: "Zen Loop", sans-serif;
+    font-size: 2rem;
 
     &:hover {
       background: rgb(0, 68, 255);
@@ -373,6 +369,10 @@ export default {
   .image-preview img {
     width: 100%;
     height: auto;
+  }
+
+  .done {
+    color: rgb(255, 145, 0);
   }
 }
 </style>

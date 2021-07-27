@@ -61,6 +61,8 @@ img {
   border: none;
   padding: 0;
   position: relative;
+  padding-bottom: 0.8rem;
+  margin-bottom: 1rem;
 
   &::after {
     content: "";
@@ -100,7 +102,7 @@ img {
     }
   }
   &.remove {
-    background: rgb(0, 68, 255); //blue indicator for chosen
+    background: rgb(192, 240, 80); //blue indicator for chosen
   }
   &.add {
     background: black; //indicator for not chosen
