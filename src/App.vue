@@ -55,16 +55,18 @@ body {
 }
 
 h1 {
-  font-size: 4rem;
+  font-size: 6rem;
   margin-bottom: 2rem;
   text-transform: uppercase;
+  font-family: "Zen Loop", sans-serif;
   @media screen and (max-width: 740px) {
     font-size: 3rem;
   }
 }
 
 h2 {
-  font-size: 2.5rem;
+  font-size: 2rem;
+  font-family: "Zen Loop", sans-serif;
 }
 
 p {

@@ -54,7 +54,6 @@ export default {
     max-width: 1200px;
     padding: 2rem;
     margin: 0 auto;
-    text-shadow: 2px 2px 10px #000000a8;
   }
   .concert-list {
     display: grid;
@@ -62,8 +61,14 @@ export default {
     grid-gap: 1rem;
     grid-row-gap: 1.5rem;
 
+    h2 {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0 0.5rem;
+    }
     p {
       margin-bottom: 0rem;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0 0.5rem;
     }
   }
 }

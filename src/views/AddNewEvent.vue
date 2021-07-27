@@ -268,7 +268,7 @@ export default {
       font-size: 1.5rem;
       color: rgb(255, 255, 255);
       font-weight: bold;
-      font-family: "Bebas Neue", cursive;
+      font-family: "Zen Loop", sans-serif;
       text-transform: uppercase;
       margin-bottom: 1rem;
       @media screen and (max-width: 740px) {

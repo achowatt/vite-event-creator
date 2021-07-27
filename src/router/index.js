@@ -14,11 +14,6 @@ const routes = [
     component: () => import("@/views/Musicians.vue"),
   },
   {
-    path: "/add-new-musician",
-    name: "AddNewMusician",
-    component: () => import("@/views/AddNewMusician.vue"),
-  },
-  {
     path: "/concerts",
     name: "Concerts",
     component: () => import("@/views/Concerts.vue"),

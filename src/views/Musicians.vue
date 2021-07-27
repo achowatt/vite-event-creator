@@ -24,7 +24,6 @@
 </template>
 
 <script>
-// import musicianData from "@/musicians.json";
 import ReusableCard from "@/components/ReusableCard.vue";
 import { fetchMusicians } from "@/firebase.js";
 
@@ -54,6 +53,8 @@ export default {
 
   h2 {
     font-size: 2rem;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 0 0.5rem;
   }
 
   .content-container {

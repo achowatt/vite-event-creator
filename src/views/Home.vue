@@ -40,6 +40,7 @@ export default {};
 
     h1 {
       padding: 0.5rem;
+      text-align: center;
       &.find-live-concerts {
         background: rgba(255, 187, 0, 0.562);
       }
@@ -54,6 +55,7 @@ export default {};
 
   .button-container {
     margin: 2rem 0;
+    font-size: 1.5rem;
     .button-link {
       border: 1px solid rgb(255, 102, 0);
       border-radius: 5px;

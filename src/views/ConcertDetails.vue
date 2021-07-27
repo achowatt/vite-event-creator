@@ -3,12 +3,27 @@
     <div class="band-image" :style="{ backgroundImage: imageBG }">
       <div class="content-container move-bottom">
         <h1>{{ concert.band }}</h1>
-        <p>Location: {{ concert.location }}</p>
-        <p>Date: {{ concert.date }}</p>
-        <p>Time: {{ concert.time }}</p>
       </div>
     </div>
     <div class="content-container">
+      <div class="about">
+        <p>Location</p>
+        <p>
+          {{ concert.location }}
+        </p>
+      </div>
+      <div class="about">
+        <p>Date</p>
+        <p>
+          {{ concert.date }}
+        </p>
+      </div>
+      <div class="about">
+        <p>Time</p>
+        <p>
+          {{ concert.time }}
+        </p>
+      </div>
       <div class="about">
         <p>About</p>
         <p>
@@ -119,15 +134,15 @@ export default {
     }
     .move-bottom {
       position: relative;
-      top: 23rem;
+      top: 30rem;
       h1 {
         margin: 0;
         text-shadow: 2px 2px 10px #000000a8;
       }
-      p {
+      /* p {
         margin: 0;
         text-shadow: 2px 2px 10px #000000a8;
-      }
+      } */
     }
   }
 
@@ -139,7 +154,8 @@ export default {
   }
 
   h2 {
-    margin: 3rem 0;
+    margin: 2rem 0;
+    font-size: 3rem;
   }
 
   .about {
@@ -147,12 +163,16 @@ export default {
     @media screen and (max-width: 700px) {
       flex-direction: column;
     }
+    p {
+      margin-bottom: 1rem;
+    }
     p:first-child {
       flex: 1;
       color: rgb(255, 145, 0);
     }
     p:last-child {
       flex: 10;
+      color: rgb(214, 214, 214);
     }
   }
 
