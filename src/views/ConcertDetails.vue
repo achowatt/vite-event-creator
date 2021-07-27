@@ -12,10 +12,11 @@
       <div class="about">
         <p>About</p>
         <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt odio
-          reprehenderit aliquid fuga excepturi. Incidunt explicabo molestias eum
-          non illum reprehenderit. Obcaecati earum atque ducimus, consectetur
-          soluta recusandae repellendus reiciendis!
+          {{ concert.description }} Lorem ipsum dolor sit, amet consectetur
+          adipisicing elit. Sunt odio reprehenderit aliquid fuga excepturi.
+          Incidunt explicabo molestias eum non illum reprehenderit. Obcaecati
+          earum atque ducimus, consectetur soluta recusandae repellendus
+          reiciendis!
         </p>
       </div>
 
@@ -72,7 +73,6 @@ export default {
     getConcert(this.$route.params.id).then((data) => {
       //set concert data
       this.concert = data;
-      console.log(data);
       //set musician data
       for (const m of data.musicians) {
         getMusician(m.id).then((data) => {
