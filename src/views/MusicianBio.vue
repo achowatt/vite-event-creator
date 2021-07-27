@@ -38,7 +38,13 @@
       </div>
       <div class="two-column">
         <p>Social Media</p>
-        <p></p>
+        <p>
+          <div class="icon-container">
+            <font-awesome-icon :icon="['fab', 'twitter']" size="lg" />
+            <font-awesome-icon :icon="['fab', 'instagram']" size="lg" />
+            <font-awesome-icon :icon="['fab', 'facebook']" size="lg" />
+          </div>
+        </p>
       </div>
     </div>
   </div>
@@ -119,24 +125,16 @@ export default {
       flex: 10;
     }
   }
-  /*
-  &::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.733);
-    color: black;
-    z-index: -1;
-  } */
-
   .content-container {
     max-width: 1200px;
     padding: 2rem;
     margin: 0 auto;
     /* background: rgba(0, 0, 0, 0.733); */
+  }
+  .icon-container {
+    width: 7rem;
+    display: flex;
+    justify-content: space-between;
   }
 }
 </style>

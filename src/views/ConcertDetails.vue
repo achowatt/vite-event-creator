@@ -47,6 +47,11 @@
             explicabo molestias eum non illum reprehenderit. Obcaecati earum
             atque ducimus, consectetur soluta recusandae repellendus reiciendis!
           </p>
+          <div id="icon-container">
+            <font-awesome-icon :icon="['fab', 'twitter']" size="lg" />
+            <font-awesome-icon :icon="['fab', 'instagram']" size="lg" />
+            <font-awesome-icon :icon="['fab', 'facebook']" size="lg" />
+          </div>
         </div>
       </div>
     </div>
@@ -175,6 +180,13 @@ export default {
       div:nth-of-type(odd) {
         padding-right: 5rem;
       }
+    }
+
+    #icon-container {
+      width: 6rem;
+      display: flex;
+      justify-content: space-between;
+      padding: 0;
     }
 
     .musician-image {
