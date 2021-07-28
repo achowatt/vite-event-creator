@@ -1,7 +1,9 @@
 <template>
-  <div class="background">
-    <div id="my-animation"></div>
-  </div>
+  <transition name="fade">
+    <div class="background">
+      <div id="my-animation"></div>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -23,6 +25,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+.fade-leave-from {
+  opacity: 1;
+}
+
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-leave-active {
+  transition: opacity 1s;
+}
+
 .background {
   position: fixed;
   background: black;

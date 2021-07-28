@@ -1,7 +1,6 @@
 <template>
   <div>
     <BioModal v-if="modal.opened" :info="modal.info" @closeBio="closeBio" />
-    <Lottie v-if="formSubmitting" />
     <div class="add-new-event-container">
       <div class="content-container">
         <h1 class="highlight-1">Create event</h1>
@@ -95,44 +94,53 @@
               placeholder="https://www.example-image.com"
             />
           </div>
-          <div id="step-8" class="confirm">
-            <h1 class="highlight-1">
-              Confirm and create
-              <span class="highlight-2"> event!</span>
-            </h1>
-            <div class="confirm-project">
-              <div class="group">
-                <p class="confirm-title">Band</p>
-                <p>{{ band }}</p>
-              </div>
-              <div class="group">
-                <p class="confirm-title">Description</p>
-                <p>{{ description }}</p>
-              </div>
-              <div class="group-preview">
-                <p class="confirm-title">Image</p>
-                <div class="image-preview" id="preview">
-                  <img v-if="bandImage" :src="bandImage" />
+          <div class="confirm-container">
+            <div
+              id="step-8"
+              class="confirm"
+              v-if="
+                band && description && date && time && location && bandImage
+              "
+            >
+              <h1 class="highlight-1">
+                Confirm and create
+                <span class="highlight-2"> event!</span>
+              </h1>
+              <div class="confirm-project">
+                <div class="group">
+                  <p class="confirm-title">Band</p>
+                  <p>{{ band }}</p>
+                </div>
+                <div class="group">
+                  <p class="confirm-title">Description</p>
+                  <p>{{ description }}</p>
+                </div>
+                <div class="group-preview">
+                  <p class="confirm-title">Image</p>
+                  <div class="image-preview" id="preview">
+                    <img v-if="bandImage" :src="bandImage" />
+                  </div>
+                </div>
+                <div class="group">
+                  <p class="confirm-title">Musicians</p>
+                  <p if="chosenMembers">
+                    {{ confirmedMembers }}
+                  </p>
+                </div>
+                <div class="group">
+                  <p class="confirm-title">Date</p>
+                  <p>{{ date }}</p>
+                </div>
+                <div class="group">
+                  <p class="confirm-title">Time</p>
+                  <p>{{ time }}</p>
+                </div>
+                <div class="group">
+                  <p class="confirm-title">Location</p>
+                  <p>{{ location }}</p>
                 </div>
               </div>
-              <div class="group">
-                <p class="confirm-title">Musicians</p>
-                <p if="chosenMembers">
-                  {{ confirmedMembers }}
-                </p>
-              </div>
-              <div class="group">
-                <p class="confirm-title">Date</p>
-                <p>{{ date }}</p>
-              </div>
-              <div class="group">
-                <p class="confirm-title">Time</p>
-                <p>{{ time }}</p>
-              </div>
-              <div class="group">
-                <p class="confirm-title">Location</p>
-                <p>{{ location }}</p>
-              </div>
+              <Lottie v-if="formSubmitting" />
             </div>
             <button type="submit">Create event</button>
           </div>
@@ -310,6 +318,10 @@ export default {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-gap: 1rem;
     grid-row-gap: 1.5rem;
+  }
+
+  .confirm-container {
+    position: relative;
   }
 
   .confirm {

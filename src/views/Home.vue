@@ -1,8 +1,6 @@
 <template>
   <div id="home" class="home-container">
-    <transition name="fade">
-      <Lottie2 v-if="animation" />
-    </transition>
+    <Lottie2 v-if="animation" />
     <div class="content-wrapper">
       <div>
         <h1 class="find-live-concerts">Find live concerts.</h1>
@@ -86,18 +84,6 @@ export default {
       color: white;
       border: 1px solid white;
       border-radius: 5px;
-    }
-
-    .fade-leave-from {
-      opacity: 1;
-    }
-
-    .fade-leave-to {
-      opacity: 0;
-    }
-
-    .fade-leave-active {
-      transition: opacity 1s;
     }
   }
 }

@@ -22,15 +22,20 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
+<style lang="scss" scoped>
 #my-animation {
-  width: 50vw;
-  height: 50vw;
-  position: fixed;
+  width: 20rem;
+  height: 20rem;
+  position: absolute;
   z-index: 10;
-  left: 50%;
-  margin-left: calc(-50vw / 2);
-  background: rgb(0, 0, 0);
-  border-radius: 50%;
+  right: 20%;
+  bottom: 15rem;
+
+  @media screen and (max-width: 500px) {
+    width: 15rem;
+    height: 15rem;
+    right: 50%;
+    margin-right: calc(-15rem / 2);
+  }
 }
 </style>
