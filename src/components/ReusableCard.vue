@@ -29,8 +29,10 @@ export default {
   padding: 1rem;
   border-radius: 5px;
   border: rgba(255, 255, 255, 0.671) solid 1px;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
 
   &::after {

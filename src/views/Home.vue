@@ -11,9 +11,6 @@
         <router-link to="/add-new-event" class="button-link btn"
           >Create Event</router-link
         >
-        <!-- <router-link to="/add-new-musician" class="new-profile-btn btn"
-          >New Profile</router-link
-        > -->
       </div>
     </div>
   </div>

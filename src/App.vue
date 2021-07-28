@@ -95,30 +95,6 @@ button {
 }
 
 //Transition
-/* .slide-enter-active,
-.slide-leave-active {
-  transition: all 1s ease-out;
-}
-
-.slide-enter-to {
-  position: absolute;
-  right: 0;
-}
-
-.slide-enter-from {
-  position: absolute;
-  right: -100%;
-}
-
-.slide-leave-to {
-  position: absolute;
-  left: -100%;
-}
-
-.slide-leave-from {
-  position: absolute;
-  left: 0;
-} */
 
 .slide-enter-from {
   opacity: 0;

@@ -38,7 +38,7 @@
               for="band-images"
               ref="step3heading"
               :class="{ done: chosenMusicians.length > 0 }"
-              >Step 3: Add your Band members</label
+              >Step 3: Add your Band members (Click on the pictures!)</label
             >
             <div class="band-images" id="band-images">
               <div

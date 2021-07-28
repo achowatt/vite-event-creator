@@ -1,10 +1,21 @@
 <template>
   <div id="concerts" class="concerts-container">
     <div class="content-container">
-      <h1>Upcoming Concerts</h1>
+      <div class="heading-container">
+        <h1>Upcoming Concerts</h1>
+        <select v-model="filter">
+          <option disabled value="">Filter by Genre</option>
+          <option value="All">All</option>
+          <option value="Classical">Classical</option>
+          <option value="Jazz">Jazz</option>
+          <option value="Pop">Pop</option>
+          <option value="Rock">Rock</option>
+          <option value="Others">Others</option>
+        </select>
+      </div>
       <div class="concert-list">
         <router-link
-          v-for="concertInfo in concerts"
+          v-for="concertInfo in filteredConcerts"
           :key="concertInfo.id"
           :to="{
             name: 'concert.details',
@@ -31,10 +42,22 @@ export default {
   data() {
     return {
       concerts: [],
+      filter: "All",
     };
   },
+  computed: {
+    filteredConcerts() {
+      if (this.filter !== "All") {
+        return this.concerts.filter((concert) => concert.genre === this.filter);
+      } else {
+        return this.concerts;
+      }
+    },
+  },
   created() {
-    fetchConcerts().then((concerts) => (this.concerts = concerts));
+    fetchConcerts().then((concerts) => {
+      this.concerts = concerts;
+    });
   },
 };
 </script>
@@ -50,6 +73,29 @@ export default {
   background-attachment: fixed;
   position: relative;
 
+  .heading-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    @media screen and (max-width: 455px) {
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    h1 {
+      margin-bottom: 0;
+    }
+    select {
+      height: 2rem;
+      width: 10rem;
+      border: 1px rgba(255, 255, 255, 0.815) solid;
+      background: rgba(0, 0, 0, 0.795);
+      color: white;
+    }
+  }
   .content-container {
     max-width: 1200px;
     padding: 2rem;
@@ -63,6 +109,7 @@ export default {
 
     h2 {
       background: rgba(0, 0, 0, 0.5);
+      color: rgb(255, 187, 0);
       padding: 0 0.5rem;
     }
     p {

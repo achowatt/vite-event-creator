@@ -70,6 +70,15 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  scrollBehavior(to, from, savedPosition) {
+    //scroll to top on page changes
+    return (
+      savedPosition ||
+      new Promise((resolve) => {
+        setTimeout(() => resolve({ top: 0 }), 1200);
+      })
+    );
+  },
 });
 
 export default router;
