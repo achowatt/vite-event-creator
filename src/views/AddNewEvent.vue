@@ -1,6 +1,7 @@
 <template>
   <div>
     <BioModal v-if="modal.opened" :info="modal.info" @closeBio="closeBio" />
+    <Lottie v-if="formSubmitting" />
     <div class="add-new-event-container">
       <div class="content-container">
         <h1 class="highlight-1">Create event</h1>
@@ -145,9 +146,10 @@
 import { createConcert, fetchMusicians } from "@/firebase.js";
 import MusicianList from "@/components/MusicianListForm.vue";
 import BioModal from "@/components/BioModal.vue";
+import Lottie from "@/components/lottie.vue";
 
 export default {
-  components: { MusicianList, BioModal },
+  components: { MusicianList, BioModal, Lottie },
   data() {
     return {
       band: "",
@@ -161,6 +163,7 @@ export default {
       modal: { opened: false, info: {} },
       showError: false,
       done: "done",
+      formSubmitting: false,
     };
   },
   computed: {
@@ -189,9 +192,21 @@ export default {
         musicians: this.chosenMusicians,
         slug: this.convertToSlug(this.band),
       };
-      createConcert(bandInfo).then((docRef) => {
-        this.$router.push({ path: `/concerts/${docRef.id}/${bandInfo.slug}` });
-      }); //send info to firebase
+
+      //play animation before changing route
+      this.animation();
+
+      //send info to firebase after 3s of animation
+      setTimeout(() => {
+        createConcert(bandInfo).then((docRef) => {
+          this.$router.push({
+            path: `/concerts/${docRef.id}/${bandInfo.slug}`,
+          });
+        });
+      }, 1500);
+    },
+    animation() {
+      this.formSubmitting = true;
     },
     convertToSlug(band) {
       return band.toLowerCase().split(" ").join("-");

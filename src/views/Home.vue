@@ -1,5 +1,8 @@
 <template>
   <div id="home" class="home-container">
+    <transition name="fade">
+      <Lottie2 v-if="animation" />
+    </transition>
     <div class="content-wrapper">
       <div>
         <h1 class="find-live-concerts">Find live concerts.</h1>
@@ -19,7 +22,19 @@
 </template>
 
 <script>
-export default {};
+import Lottie2 from "@/components/lottie2.vue";
+export default {
+  components: { Lottie2 },
+  data() {
+    return {
+      animation: false,
+    };
+  },
+  mounted() {
+    this.animation = true;
+    setTimeout(() => (this.animation = false), 2000);
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -71,6 +86,18 @@ export default {};
       color: white;
       border: 1px solid white;
       border-radius: 5px;
+    }
+
+    .fade-leave-from {
+      opacity: 1;
+    }
+
+    .fade-leave-to {
+      opacity: 0;
+    }
+
+    .fade-leave-active {
+      transition: opacity 1s;
     }
   }
 }
