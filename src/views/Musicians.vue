@@ -1,10 +1,19 @@
 <template>
   <div class="musicians-container">
     <div class="content-container">
-      <h1>local musicians</h1>
+      <div class="header-section">
+        <h1>local musicians</h1>
+        <input
+          type="text"
+          name="search"
+          id="search"
+          placeholder="Search by Name"
+          v-model="nameSearch"
+        />
+      </div>
       <div class="musician-list">
         <router-link
-          v-for="musician in musicians"
+          v-for="musician in findMusicians"
           :to="{
             name: 'musician.bio',
             params: { id: musician.id, slug: musician.slug },
@@ -32,7 +41,20 @@ export default {
   data() {
     return {
       musicians: [],
+      nameSearch: "",
     };
+  },
+  computed: {
+    findMusicians() {
+      if (this.nameSearch === "") {
+        return this.musicians;
+      } else {
+        return this.musicians.filter((musician) => {
+          const regex = new RegExp(this.nameSearch, "gi");
+          return musician.fullName.match(regex);
+        });
+      }
+    },
   },
   created() {
     fetchMusicians().then((musicians) => (this.musicians = musicians));
@@ -50,6 +72,32 @@ export default {
   filter: contrast(1.1);
   background-attachment: fixed;
   position: relative;
+
+  .header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    @media screen and (max-width: 455px) {
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    h1 {
+      margin-bottom: 0;
+    }
+
+    input {
+      height: 2rem;
+      width: 15rem;
+      border: 1px rgba(255, 255, 255, 0.815) solid;
+      background: rgba(0, 0, 0, 0.795);
+      color: white;
+      padding: 0 1rem;
+    }
+  }
 
   h2,
   p {

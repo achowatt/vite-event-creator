@@ -110,9 +110,10 @@ export default {
 
   .band-image {
     width: 100%;
-    height: 40rem;
+    height: 50rem;
     max-height: 100vh;
     margin-top: -8rem;
+    background-attachment: fixed;
     background-size: cover;
     position: relative;
     z-index: -1;
@@ -216,6 +217,7 @@ export default {
       border-radius: 5px;
       object-fit: cover;
       object-position: left top;
+      background-attachment: fixed;
     }
   }
 

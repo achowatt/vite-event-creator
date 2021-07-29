@@ -94,6 +94,7 @@ export default {
     margin-top: -8rem;
     background-size: cover;
     position: relative;
+    background-attachment: fixed;
 
     & > div {
       max-width: 1200px;
