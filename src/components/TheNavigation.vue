@@ -8,17 +8,21 @@
     <div class="nav-width">
       <ul>
         <li>
-          <AppLink to="/" @click="toggleNav()">Home</AppLink>
+          <router-link to="/" @click="toggleNav()">Home</router-link>
         </li>
         <li>
-          <AppLink to="/concerts" @click="toggleNav()">Concerts</AppLink>
+          <router-link to="/concerts" @click="toggleNav()"
+            >Concerts</router-link
+          >
         </li>
         <li>
-          <AppLink to="/musicians" @click="toggleNav()">Musicians</AppLink>
+          <router-link to="/musicians" @click="toggleNav()"
+            >Musicians</router-link
+          >
         </li>
       </ul>
-      <AppLink to="/add-new-event" class="button-link" @click="toggleNav()"
-        >Create Event</AppLink
+      <router-link to="/add-new-event" class="button-link" @click="toggleNav()"
+        >Create Event</router-link
       >
     </div>
   </div>

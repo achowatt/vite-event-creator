@@ -1,8 +1,12 @@
 <template>
   <div class="footer">
     <div class="content-container">
-      <AppLink class="visit" to="https://annachowattanakul.ca"
-        >Built &amp; Designed by <span>Anna Chowattanakul</span> &copy;</AppLink
+      <a
+        class="visit"
+        rel="noopener"
+        target="_blank"
+        href="https://annachowattanakul.ca"
+        >Built &amp; Designed by <span>Anna Chowattanakul</span> &copy;</a
       >
     </div>
   </div>

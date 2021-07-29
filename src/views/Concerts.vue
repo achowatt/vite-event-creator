@@ -14,7 +14,7 @@
         </select>
       </div>
       <div class="concert-list">
-        <AppLink
+        <router-link
           v-for="concertInfo in filteredConcerts"
           :key="concertInfo.id"
           :to="{
@@ -28,7 +28,7 @@
             <p>{{ concertInfo.location }}</p>
             <p>{{ concertInfo.time }}</p>
           </ReusableCard>
-        </AppLink>
+        </router-link>
       </div>
     </div>
   </div>
