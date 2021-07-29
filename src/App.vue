@@ -10,15 +10,16 @@
         ></component>
       </transition>
     </router-view>
-    <footer />
+    <Footer />
   </div>
 </template>
 
 <script>
 import TheNavigation from "@/components/TheNavigation.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
-  components: { TheNavigation },
+  components: { TheNavigation, Footer },
 };
 </script>
 
@@ -43,7 +44,7 @@ body {
 }
 
 .main-wrapper {
-  min-height: calc(100vh); //screen height - nav bar
+  min-height: calc(100vh - 4rem); //screen height - footer
   padding-top: 8rem;
 }
 

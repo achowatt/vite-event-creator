@@ -3,7 +3,7 @@
     <div class="content-container">
       <h1>local musicians</h1>
       <div class="musician-list">
-        <router-link
+        <AppLink
           v-for="musician in musicians"
           :to="{
             name: 'musician.bio',
@@ -17,7 +17,7 @@
               {{ musician.instrument }}
             </p>
           </ReusableCard>
-        </router-link>
+        </AppLink>
       </div>
     </div>
   </div>

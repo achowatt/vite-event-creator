@@ -8,8 +8,8 @@
         <h1 class="share-your-passion">Share your passion.</h1>
       </div>
       <div class="button-container">
-        <router-link to="/add-new-event" class="button-link btn"
-          >Create Event</router-link
+        <AppLink to="/add-new-event" class="button-link btn"
+          >Create Event</AppLink
         >
       </div>
     </div>

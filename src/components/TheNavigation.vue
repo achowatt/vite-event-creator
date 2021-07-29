@@ -8,21 +8,17 @@
     <div class="nav-width">
       <ul>
         <li>
-          <router-link to="/" @click="toggleNav()">Home</router-link>
+          <AppLink to="/" @click="toggleNav()">Home</AppLink>
         </li>
         <li>
-          <router-link to="/concerts" @click="toggleNav()"
-            >Concerts</router-link
-          >
+          <AppLink to="/concerts" @click="toggleNav()">Concerts</AppLink>
         </li>
         <li>
-          <router-link to="/musicians" @click="toggleNav()"
-            >Musicians</router-link
-          >
+          <AppLink to="/musicians" @click="toggleNav()">Musicians</AppLink>
         </li>
       </ul>
-      <router-link to="/add-new-event" class="button-link" @click="toggleNav()"
-        >Create Event</router-link
+      <AppLink to="/add-new-event" class="button-link" @click="toggleNav()"
+        >Create Event</AppLink
       >
     </div>
   </div>
@@ -42,11 +38,6 @@ export default {
       }
     },
   },
-  // watch: {
-  //   navigationToggle(newValue) {
-  //     console.log(newValue);
-  //   },
-  // },
 };
 </script>
 
