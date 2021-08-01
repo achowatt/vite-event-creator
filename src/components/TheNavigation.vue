@@ -42,11 +42,6 @@ export default {
       }
     },
   },
-  // watch: {
-  //   navigationToggle(newValue) {
-  //     console.log(newValue);
-  //   },
-  // },
 };
 </script>
 

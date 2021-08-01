@@ -44,7 +44,7 @@ body {
 }
 
 .main-wrapper {
-  min-height: calc(100vh); //screen height - nav bar
+  min-height: calc(100vh - 4rem); //screen height - footer
   padding-top: 8rem;
 }
 
