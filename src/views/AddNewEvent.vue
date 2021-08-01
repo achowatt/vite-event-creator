@@ -6,7 +6,10 @@
         <h1 class="highlight-1">Create event</h1>
         <form @submit.prevent="onSubmit">
           <div id="step-1" class="form-group">
-            <label for="band-name" :class="{ done: band.length > 0 }"
+            <label
+              for="band-name"
+              :class="{ done: band.length > 0 }"
+              class="label"
               >Step 1: Band Name</label
             >
             <input
@@ -22,6 +25,7 @@
             <label
               for="band-description"
               :class="{ done: description.length > 0 }"
+              class="label"
               >Step 2: Add Description</label
             >
             <textarea
@@ -38,6 +42,7 @@
               for="band-images"
               ref="step3heading"
               :class="{ done: chosenMusicians.length > 0 }"
+              class="label"
               >Step 3: Add your Band members (Click on the pictures!)</label
             >
             <div class="band-images" id="band-images">
@@ -59,19 +64,28 @@
             <p class="error" v-if="showError">Please add at least one member</p>
           </div>
           <div id="step-4" class="form-group">
-            <label for="concert-date" :class="{ done: date.length > 0 }"
+            <label
+              for="concert-date"
+              :class="{ done: date.length > 0 }"
+              class="label"
               >Step 4: concert date</label
             >
             <input type="date" id="concert-date" v-model="date" required />
           </div>
           <div id="step-5" class="form-group">
-            <label for="concert-time" :class="{ done: time.length > 0 }"
+            <label
+              for="concert-time"
+              :class="{ done: time.length > 0 }"
+              class="label"
               >Step 5: concert time</label
             >
             <input type="time" id="concert-time" v-model="time" required />
           </div>
           <div id="step-6" class="form-group">
-            <label for="concert-location" :class="{ done: location.length > 0 }"
+            <label
+              for="concert-location"
+              :class="{ done: location.length > 0 }"
+              class="label"
               >Step 6: location</label
             >
             <input
@@ -83,7 +97,10 @@
             />
           </div>
           <div id="step-7" class="form-group">
-            <label for="concert-image" :class="{ done: bandImage.length > 0 }"
+            <label
+              for="concert-image"
+              :class="{ done: bandImage.length > 0 }"
+              class="label"
               >Step 7: Add Image URL</label
             >
             <input
@@ -94,12 +111,36 @@
               placeholder="https://www.example-image.com"
             />
           </div>
+          <div id="step-8" class="form-group musical-genre">
+            <h4
+              class="label"
+              for="musical-genre"
+              :class="{ done: genre.length > 0 }"
+            >
+              Step 8: Musical Genre (You can choose more than one options)
+            </h4>
+            <div class="options-container">
+              <div v-for="genre in possibleGenre" :key="genre">
+                <GenreButtons
+                  :genre="genre"
+                  @addGenre="addGenre(genre)"
+                  @removeGenre="removeGenre(genre)"
+                />
+              </div>
+            </div>
+          </div>
           <div class="confirm-container">
             <div
               id="step-8"
               class="confirm"
               v-if="
-                band && description && date && time && location && bandImage
+                band &&
+                description &&
+                date &&
+                time &&
+                location &&
+                bandImage &&
+                genre
               "
             >
               <h1 class="highlight-1">
@@ -139,6 +180,10 @@
                   <p class="confirm-title">Location</p>
                   <p>{{ location }}</p>
                 </div>
+                <div class="group">
+                  <p class="confirm-title">Genre</p>
+                  <p>{{ genre.join(", ") }}</p>
+                </div>
               </div>
               <Lottie v-if="formSubmitting" />
             </div>
@@ -155,9 +200,10 @@ import { createConcert, fetchMusicians } from "@/firebase.js";
 import MusicianList from "@/components/MusicianListForm.vue";
 import BioModal from "@/components/BioModal.vue";
 import Lottie from "@/components/lottie.vue";
+import GenreButtons from "@/components/GenreButtons.vue";
 
 export default {
-  components: { MusicianList, BioModal, Lottie },
+  components: { MusicianList, BioModal, Lottie, GenreButtons },
   data() {
     return {
       band: "",
@@ -166,8 +212,10 @@ export default {
       time: "",
       location: "",
       bandImage: "",
+      genre: [],
       musicians: [],
       chosenMusicians: [],
+      possibleGenre: ["Classical", "Jazz", "Pop", "Rock", "Others"],
       modal: { opened: false, info: {} },
       showError: false,
       done: "done",
@@ -198,6 +246,7 @@ export default {
         location: this.location,
         bandImage: this.bandImage,
         musicians: this.chosenMusicians,
+        genre: this.genre,
         slug: this.convertToSlug(this.band),
       };
 
@@ -220,6 +269,7 @@ export default {
       return band.toLowerCase().split(" ").join("-");
     },
     add(id) {
+      //add musician to form
       const chosen = this.musicians.filter(
         (musicians) => musicians.id == id
       )[0];
@@ -227,6 +277,7 @@ export default {
       this.showError = false;
     },
     remove(removeId) {
+      //add musician from form
       this.chosenMusicians = this.chosenMusicians.filter(
         (chosen) => chosen.id !== removeId
       );
@@ -239,6 +290,14 @@ export default {
     },
     closeBio() {
       this.modal.opened = false;
+    },
+    addGenre(genre) {
+      console.log(genre);
+      this.genre.push(genre);
+    },
+    removeGenre(genre) {
+      console.log(genre);
+      this.genre = this.genre.filter((remove) => remove !== genre);
     },
   },
   created() {
@@ -274,7 +333,7 @@ export default {
     flex-direction: column;
     margin-bottom: 4rem;
 
-    label {
+    .label {
       font-size: 1.5rem;
       font-weight: bold;
       font-family: "Zen Loop", sans-serif;
@@ -318,6 +377,15 @@ export default {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-gap: 1rem;
     grid-row-gap: 1.5rem;
+  }
+
+  .musical-genre {
+    .options-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      /* place-items: center; */
+      grid-gap: 1rem;
+    }
   }
 
   .confirm-container {
