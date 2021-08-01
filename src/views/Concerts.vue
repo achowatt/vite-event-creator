@@ -24,6 +24,7 @@
         >
           <ReusableCard :info="concertInfo">
             <h2>{{ concertInfo.band }}</h2>
+            <p>Genre: {{ concertInfo.genre.join(", ") }}</p>
             <p>{{ concertInfo.date }}</p>
             <p>{{ concertInfo.location }}</p>
             <p>{{ concertInfo.time }}</p>
@@ -47,8 +48,10 @@ export default {
   },
   computed: {
     filteredConcerts() {
-      if (this.filter !== "All") {
-        return this.concerts.filter((concert) => concert.genre === this.filter);
+      if (this.filter != "All") {
+        return this.concerts.filter((concert) =>
+          concert.genre.includes(this.filter)
+        );
       } else {
         return this.concerts;
       }

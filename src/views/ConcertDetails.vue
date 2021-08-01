@@ -34,6 +34,10 @@
           reiciendis!
         </p>
       </div>
+      <div class="about">
+        <p>Genre</p>
+        <p>{{ genre.join(", ") }}</p>
+      </div>
 
       <h2>Meet the musicians</h2>
 
@@ -74,14 +78,13 @@
 </template>
 
 <script>
-import GoBack from "@/components/GoBack.vue";
 import { getConcert, getMusician } from "@/firebase.js";
 export default {
-  components: { GoBack },
   data() {
     return {
       concert: {},
       musicians: [],
+      genre: [],
     };
   },
   computed: {
@@ -93,6 +96,7 @@ export default {
     getConcert(this.$route.params.id).then((data) => {
       //set concert data
       this.concert = data;
+      this.genre = data.genre;
       //set musician data
       for (const m of data.musicians) {
         getMusician(m.id).then((data) => {
@@ -110,7 +114,7 @@ export default {
 
   .band-image {
     width: 100%;
-    height: 50rem;
+    height: 45rem;
     max-height: 100vh;
     margin-top: -8rem;
     background-attachment: fixed;
