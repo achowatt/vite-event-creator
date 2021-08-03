@@ -136,11 +136,12 @@
               v-if="
                 band &&
                 description &&
+                musicians.length &&
                 date &&
                 time &&
                 location &&
                 bandImage &&
-                genre
+                genre.length
               "
             >
               <h1 class="highlight-1">

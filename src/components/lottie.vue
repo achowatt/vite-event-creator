@@ -26,16 +26,19 @@ export default {
 #my-animation {
   width: 20rem;
   height: 20rem;
-  position: absolute;
+  position: fixed;
   z-index: 10;
-  right: 20%;
-  bottom: 15rem;
+  left: 50%;
+  top: calc(50% - 3rem);
+  margin-top: calc(-20rem / 2);
+  margin-left: calc(-20rem / 2);
 
   @media screen and (max-width: 500px) {
     width: 15rem;
     height: 15rem;
-    right: 50%;
-    margin-right: calc(-15rem / 2);
+    left: 50%;
+    margin-top: calc(-15rem / 2);
+    margin-left: calc(-15rem / 2);
   }
 }
 </style>
