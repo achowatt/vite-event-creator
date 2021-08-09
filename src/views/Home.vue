@@ -1,5 +1,5 @@
 <template>
-  <div id="home" class="home-container">
+  <main id="home" class="home-container">
     <Lottie2 v-if="animation" />
     <div class="content-wrapper">
       <div>
@@ -13,7 +13,7 @@
         >
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <BioModal v-if="modal.opened" :info="modal.info" @closeBio="closeBio" />
     <div class="add-new-event-container">
       <div class="content-container">
@@ -193,7 +193,7 @@
         </form>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -207,6 +207,7 @@ export default {
   components: { MusicianList, BioModal, Lottie, GenreButtons },
   data() {
     return {
+      //v-model
       band: "",
       description: "",
       date: "",
@@ -214,8 +215,9 @@ export default {
       location: "",
       bandImage: "",
       genre: [],
-      musicians: [],
       chosenMusicians: [],
+      //display
+      musicians: [],
       possibleGenre: ["Classical", "Jazz", "Pop", "Rock", "Others"],
       modal: { opened: false, info: {} },
       showError: false,
@@ -278,7 +280,7 @@ export default {
       this.showError = false;
     },
     remove(removeId) {
-      //add musician from form
+      //remove musician from form
       this.chosenMusicians = this.chosenMusicians.filter(
         (chosen) => chosen.id !== removeId
       );
@@ -293,11 +295,9 @@ export default {
       this.modal.opened = false;
     },
     addGenre(genre) {
-      console.log(genre);
       this.genre.push(genre);
     },
     removeGenre(genre) {
-      console.log(genre);
       this.genre = this.genre.filter((remove) => remove !== genre);
     },
   },

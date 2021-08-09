@@ -1,5 +1,4 @@
 <template>
-  <div>
     <TheNavigation />
     <router-view v-slot="{ Component }">
       <transition name="slide" mode="out-in">
@@ -11,7 +10,6 @@
       </transition>
     </router-view>
     <Footer />
-  </div>
 </template>
 
 <script>
@@ -96,7 +94,6 @@ button {
 }
 
 //Transition
-
 .slide-enter-from {
   opacity: 0;
   transform: translateY(100vh);

@@ -1,5 +1,5 @@
 <template>
-  <div class="page-not-found-container">
+  <main class="page-not-found-container">
     <div class="content-container">
       <h1>Not Found</h1>
       <p>
@@ -7,7 +7,7 @@
         <router-link to="/">home</router-link>
       </p>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>

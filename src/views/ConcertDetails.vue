@@ -1,5 +1,5 @@
 <template>
-  <div id="concert-details" class="concert-details-container">
+  <main id="concert-details" class="concert-details-container">
     <div class="band-image" :style="{ backgroundImage: imageBG }">
       <div class="content-container move-bottom">
         <h1>{{ concert.band }}</h1>
@@ -74,7 +74,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>

@@ -1,31 +1,33 @@
 <template>
-  <div
-    class="nav-button"
-    :class="{ opened: navigationToggle }"
-    @click="navigationToggle = !navigationToggle"
-  ></div>
-  <div id="nav" class="nav-container" :class="{ slideIn: navigationToggle }">
-    <div class="nav-width">
-      <ul>
-        <li>
-          <router-link to="/" @click="toggleNav()">Home</router-link>
-        </li>
-        <li>
-          <router-link to="/concerts" @click="toggleNav()"
-            >Concerts</router-link
-          >
-        </li>
-        <li>
-          <router-link to="/musicians" @click="toggleNav()"
-            >Musicians</router-link
-          >
-        </li>
-      </ul>
-      <router-link to="/add-new-event" class="button-link" @click="toggleNav()"
-        >Create Event</router-link
-      >
+  <nav>
+    <div
+      class="nav-button"
+      :class="{ opened: navigationToggle }"
+      @click="navigationToggle = !navigationToggle"
+    ></div>
+    <div id="nav" class="nav-container" :class="{ slideIn: navigationToggle }">
+      <div class="nav-width">
+        <ul>
+          <li>
+            <router-link to="/" @click="toggleNav()">Home</router-link>
+          </li>
+          <li>
+            <router-link to="/concerts" @click="toggleNav()"
+              >Concerts</router-link
+            >
+          </li>
+          <li>
+            <router-link to="/musicians" @click="toggleNav()"
+              >Musicians</router-link
+            >
+          </li>
+        </ul>
+        <router-link to="/add-new-event" class="button-link" @click="toggleNav()"
+          >Create Event</router-link
+        >
+      </div>
     </div>
-  </div>
+  </nav>
 </template>
 
 <script>

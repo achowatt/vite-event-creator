@@ -6,7 +6,7 @@
         :style="{ backgroundImage: imageBG }"
         style="background-repeat: no-repeat"
       >
-        <button type="button" class="close-button" ref="closeButton">X</button>
+        <button type="button" class="close-button" ref="closeButton"><font-awesome-icon :icon="['far', 'times-circle']" size="lg" style="pointer-events: none;"/></button>
         <h1>{{ info.fullName }}</h1>
         <p>{{ info.instrument }}</p>
       </div>
@@ -40,10 +40,6 @@
           <p>Phone</p>
           <p>{{ info.phone }}</p>
         </div>
-        <div class="two-column">
-          <p>Social Media</p>
-          <p></p>
-        </div>
       </div>
     </div>
   </div>
@@ -61,8 +57,7 @@ export default {
   methods: {
     closeBio(e) {
       if (
-        e.target == this.$refs.overlay ||
-        e.target == this.$refs.closeButton
+        e.target == this.$refs.overlay || e.target == this.$refs.closeButton
       ) {
         this.$emit("closeBio");
       }
@@ -82,7 +77,7 @@ export default {
   background: rgba(0, 0, 0, 0.858);
   .close-button {
     font-size: 2rem;
-    color: rgb(49, 49, 49);
+    color: white;
     background: transparent;
     position: absolute;
     top: 1rem;
@@ -102,7 +97,8 @@ export default {
     }
     p:first-child {
       flex: 2;
-      color: orange;
+      color: black;
+      font-weight: bold;
     }
     p:last-child {
       flex: 10;

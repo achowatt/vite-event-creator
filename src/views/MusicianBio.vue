@@ -1,5 +1,5 @@
 <template>
-  <div class="musician-details-container">
+  <main class="musician-details-container">
     <div class="musician-image" :style="{ backgroundImage: imageURL }">
       <div>
         <h1>{{ musician.fullName }}</h1>
@@ -38,16 +38,14 @@
       </div>
       <div class="two-column">
         <p>Social Media</p>
-        <p>
-          <div class="icon-container">
+        <p class="icon-container">
             <font-awesome-icon :icon="['fab', 'twitter']" size="lg" />
             <font-awesome-icon :icon="['fab', 'instagram']" size="lg" />
             <font-awesome-icon :icon="['fab', 'facebook']" size="lg" />
-          </div>
         </p>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="musicians-container">
+  <main class="musicians-container">
     <div class="content-container">
       <div class="header-section">
         <h1>local musicians</h1>
@@ -29,7 +29,7 @@
         </router-link>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>

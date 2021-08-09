@@ -1,5 +1,5 @@
 <template>
-  <div id="concerts" class="concerts-container">
+  <main id="concerts" class="concerts-container">
     <div class="content-container">
       <div class="heading-container">
         <h1>Upcoming Concerts</h1>
@@ -32,7 +32,7 @@
         </router-link>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>

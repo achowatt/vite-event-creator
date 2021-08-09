@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">
+  <footer class="footer">
     <div class="content-container">
       <a
         class="visit"
@@ -9,7 +9,7 @@
         >Built &amp; Designed by <span>Anna Chowattanakul</span> &copy;</a
       >
     </div>
-  </div>
+  </footer>
 </template>
 
 <script>
