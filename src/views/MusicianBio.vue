@@ -36,10 +36,15 @@
         <p>Phone</p>
         <p>{{ musician.phone }}</p>
       </div>
-      <div class="icon-container">
-        <font-awesome-icon :icon="['fab', 'twitter']" size="lg" />
-        <font-awesome-icon :icon="['fab', 'instagram']" size="lg" />
-        <font-awesome-icon :icon="['fab', 'facebook']" size="lg" />
+      <div class="two-column">
+        <p>Social Media</p>
+        <div>
+          <div className="icon-container">
+            <font-awesome-icon :icon="['fab', 'twitter']" size="lg" />
+            <font-awesome-icon :icon="['fab', 'instagram']" size="lg" />
+            <font-awesome-icon :icon="['fab', 'facebook']" size="lg" />
+          </div>
+        </div>
       </div>
     </div>
   </main>
@@ -120,6 +125,10 @@ export default {
     p:last-child {
       flex: 10;
     }
+
+    div:last-child {
+      flex: 10;
+    }
   }
   .content-container {
     max-width: 1200px;
@@ -131,6 +140,7 @@ export default {
     width: 7rem;
     display: flex;
     justify-content: space-between;
+    justify-self: flex-start;
   }
 }
 </style>
