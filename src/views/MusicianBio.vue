@@ -36,13 +36,10 @@
         <p>Phone</p>
         <p>{{ musician.phone }}</p>
       </div>
-      <div class="two-column">
-        <p>Social Media</p>
-        <p class="icon-container">
-            <font-awesome-icon :icon="['fab', 'twitter']" size="lg" />
-            <font-awesome-icon :icon="['fab', 'instagram']" size="lg" />
-            <font-awesome-icon :icon="['fab', 'facebook']" size="lg" />
-        </p>
+      <div class="icon-container">
+        <font-awesome-icon :icon="['fab', 'twitter']" size="lg" />
+        <font-awesome-icon :icon="['fab', 'instagram']" size="lg" />
+        <font-awesome-icon :icon="['fab', 'facebook']" size="lg" />
       </div>
     </div>
   </main>
